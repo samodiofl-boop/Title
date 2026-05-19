@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beycome Title — Title Sales Consultant Training Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #FF9B77;
+      --coral-soft: #FFF2EC;
+      --coral-deep: #FF9B77;
+      --indigo: #5a6ad4;
+      --indigo-soft: #F4F6FF;
+      --indigo-deep: #5a6ad4;
+      --navy: #3F4854;
+      --navy-soft: #5D6875;
+      --bg: #F7F8FC;
+      --card: #FFFFFF;
+      --line: #e0e0e0;
+      --text: #3A4048;
+      --muted: #6C7480;
+      --radius: 14px;
+      --shadow: 0 2px 8px rgba(63,72,84,.08), 0 8px 24px rgba(63,72,84,.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Main Content */
+    main {
+      min-height: calc(100vh - 320px);
+      padding: 50px 0 80px;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Welcome Page */
+    .welcome-page {
+      max-width: 650px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .welcome-page h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--coral);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .welcome-page .subtitle {
+      font-size: 17px;
+      color: var(--navy-soft);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .welcome-page .intro-text {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 50px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .toc-list {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0;
+      margin-bottom: 50px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .toc-item {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .toc-item:last-child {
+      border-bottom: none;
+    }
+
+    .toc-item .num {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--indigo-soft);
+      color: var(--indigo-deep);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toc-item .title {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    .cta-button {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 16px 48px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background: #2d3540;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(63,72,84,.2);
+    }
+
+    .content-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .jump-nav {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      position: sticky;
+      top: 18px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+    }
+
+    .jump-nav-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding: 0 2px;
+    }
+
+    .jump-link {
+      width: 100%;
+      text-align: left;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--navy);
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 4px;
+      transition: all 0.2s;
+    }
+
+    .jump-link:hover {
+      background: var(--indigo-soft);
+      border-color: #d9dffd;
+    }
+
+    .jump-link.active {
+      background: var(--indigo-soft);
+      border-color: #c8d1ff;
+      color: var(--indigo-deep);
+      font-weight: 700;
+    }
+
+    /* Content Page */
+    .content-page {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      min-height: calc(100vh - 400px);
+    }
+
+    .content-page-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      border-bottom: 2px solid var(--indigo-soft);
+      padding-bottom: 24px;
+    }
+
+    .content-page .num {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--indigo-soft);
+      color: var(--indigo-deep);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-page h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .content-body {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .content-body p {
+      margin-bottom: 18px;
+    }
+
+    .content-body p.lead {
+      font-size: 16px;
+      color: var(--navy-soft);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .content-body h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 28px;
+      margin-bottom: 14px;
+    }
+
+    .content-body h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 22px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .content-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .content-body th {
+      background: var(--navy);
+      color: #fff;
+      text-align: left;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .content-body td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .content-body tbody tr:nth-child(even) {
+      background: #FAFBFF;
+    }
+
+    .content-body ul, .content-body ol {
+      margin: 14px 0 14px 28px;
+    }
+
+    .content-body li {
+      margin-bottom: 8px;
+    }
+
+    .content-body strong {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .content-body a {
+      color: var(--indigo-deep);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .content-body a:hover {
+      color: var(--coral);
+      text-decoration: underline;
+    }
+
+    .pdf-viewer {
+      margin: 24px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #f7f8fc;
+      padding: 12px;
+    }
+
+    .callout {
+      border-radius: 11px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 14px;
+      border-left: 4px solid;
+      background: #f9fafb;
+    }
+
+    .callout.info {
+      border-left-color: var(--indigo-deep);
+      background: var(--indigo-soft);
+    }
+
+    .callout.warn {
+      border-left-color: var(--coral);
+      background: var(--coral-soft);
+    }
+
+    .callout label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .script {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+      background: #f7f8fc;
+    }
+
+    .script-header {
+      background: #e8eef8;
+      padding: 14px 16px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .tag.fl {
+      background: var(--coral-soft);
+      color: var(--coral-deep);
+    }
+
+    .tag.tx {
+      background: var(--indigo-soft);
+      color: var(--indigo-deep);
+    }
+
+    .script-body {
+      padding: 16px;
+    }
+
+    .script-role {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 14px 0 6px;
+    }
+
+    .speak {
+      background: #fff;
+      border-left: 3px solid var(--coral);
+      padding: 10px 14px;
+      margin: 8px 0;
+      font-size: 14px;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--navy);
+    }
+
+    /* Navigation */
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .nav-button {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-button:hover:not(:disabled) {
+      background: #2d3540;
+      transform: translateY(-1px);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .nav-counter {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .content-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .jump-nav {
+        position: static;
+        max-height: none;
+        margin-bottom: 16px;
+      }
+
+      .jump-nav-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 2px;
+      }
+
+      .jump-link {
+        white-space: nowrap;
+        margin-bottom: 0;
+        flex: 0 0 auto;
+      }
+
+      .content-page {
+        padding: 30px 20px;
+      }
+
+      .welcome-page {
+        margin: 30px auto;
+      }
+
+      .welcome-page h2 {
+        font-size: 28px;
+      }
+
+      .nav-footer {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .nav-button {
+        width: 100%;
+      }
+    }
+
+    mark {
+      background: var(--coral-soft);
+      color: var(--navy);
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="wrap">
+      <!-- Welcome Page -->
+      <div id="welcome-view" class="view active">
+        <div class="welcome-page">
+          <h2>Welcome to the Title Sales Team</h2>
+          <p class="subtitle">Your complete guide to selling and closing title in Florida & Texas</p>
+
+          <p class="intro-text">
+            This training guide is your single source of truth. It covers everything you need to know: your role, pricing, scripts, processes, contracts, and compliance guardrails. Each section is designed for clarity and action — no fluff, just what works.
+          </p>
+
+          <div class="toc-list">
+            <div class="toc-item">
+              <div class="num">1</div>
+              <div class="title">Welcome & Your Role</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">2</div>
+              <div class="title">Systems & Tools</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">3</div>
+              <div class="title">Pricing — The Source of Truth</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">4</div>
+              <div class="title">End-to-End Process</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">5</div>
+              <div class="title">Daily Workflow</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">6</div>
+              <div class="title">Call Scripts</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">7</div>
+              <div class="title">SMS & Email Templates</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">8</div>
+              <div class="title">Florida & Texas Playbooks</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">9</div>
+              <div class="title">Objections & Rebuttals</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">10</div>
+              <div class="title">Generating a Quote</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">11</div>
+              <div class="title">Resources & Glossary</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">12</div>
+              <div class="title">FAQ</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">13</div>
+              <div class="title">Day-1 Operating Playbook</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">14</div>
+              <div class="title">30 / 60 / 90 Ramp Plan</div>
+            </div>
+          </div>
+
+          <button class="cta-button" onclick="startTraining()">Get Started</button>
+        </div>
+      </div>
+
+      <!-- Content Pages -->
+      <div id="content-view" class="view">
+        <div class="content-layout">
+          <aside class="jump-nav" aria-label="Section navigation">
+            <div class="jump-nav-label">Jump To Section</div>
+            <div class="jump-nav-list" id="jump-nav-list"></div>
+          </aside>
+
+          <div>
+            <div class="content-page" id="content-container"></div>
+            <div class="nav-footer">
+              <button class="nav-button" id="prev-btn" onclick="previousPage()">← Back</button>
+              <span class="nav-counter"><span id="current-page">1</span> / <span id="total-pages">14</span></span>
+              <button class="nav-button" id="next-btn" onclick="nextPage()">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Beycome Corp. — Internal Use Only · Title Sales department reference · Last updated: May 2026 (Sam team)</div>
+  </footer>
+
+  <script>
+    const sections = [
+      {
+        id: 1,
+        title: "Welcome & Your Role",
+        content: `
+          <div class="content-page-header">
+            <div class="num">1</div>
+            <h2>Welcome & Your Role</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Welcome to Beycome's Title Sales team. This guide is your single source of truth — read it, reference it, keep it open while you work.</p>
+
+            <h3>What this role is</h3>
+            <p>You are the <strong>Title Sales Consultant</strong>. You are the first personal voice a Beycome seller hears on the title side. Your job is <strong>not</strong> to hard-sell — it is to <strong>inform, build trust, and make closing easy</strong>. Sellers who feel educated choose Beycome Title on their own. Be the knowledgeable guide, not the closer.</p>
+
+            <p>You work <strong>after the listing is live on the MLS</strong> — never at checkout. Two customer types define your day:</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer type</th>
+                  <th>Your job</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Prepaid title</strong> (Florida only — paid $99 at checkout)</td>
+                  <td>Welcome them, be their named contact, be ready when offers arrive. Nothing to sell — reassurance role.</td>
+                </tr>
+                <tr>
+                  <td><strong>Non-prepaid</strong> (FL not prepaid, or any Texas seller)</td>
+                  <td>Educate on how title works and how the seller controls the choice. Convert before or at the offer.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout info">
+              <label>Reports to</label>
+              Sam Odio, VP of Sales — your escalation point for pricing exceptions, upset sellers, compliance questions, anything not covered here. When in doubt, ask.
+            </div>
+
+            <h3>What "good" looks like</h3>
+            <ul>
+              <li><strong>Phone-first, always.</strong> Call before you text.</li>
+              <li><strong>Consultative tone.</strong> Knowledgeable guide on the seller's side.</li>
+              <li><strong>Relentless, respectful follow-up.</strong> No non-prepaid seller goes cold.</li>
+              <li><strong>Total note discipline.</strong> If it isn't in the Back Office, it didn't happen.</li>
+              <li><strong>Pricing accuracy.</strong> Never guess a number — this section is memorized cold.</li>
+            </ul>
+
+            <div class="callout info">
+              <label>The core idea</label>
+              Most FSBO sellers don't think about title until an offer is already on the table — by then it's a scramble. Your value is getting there first, calmly, with good information.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 2,
+        title: "Systems & Tools",
+        content: `
+          <div class="content-page-header">
+            <div class="num">2</div>
+            <h2>Systems & Tools</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Five systems run your day. Be fluent in all five by end of week one.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>What you use it for</th>
+                  <th>Access</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Beycome Back Office</strong></td>
+                  <td>Listings, verify package & prepaid status, notes on every interaction, open title files, upload contracts</td>
+                  <td><a href="https://kobe.beycome.com/" target="_blank">kobe.beycome.com</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Zoho Voice</strong></td>
+                  <td><strong>All calls AND all SMS.</strong> Calls first; SMS fallback. Log every call.</td>
+                  <td><a href="https://voice.zoho.com/" target="_blank">voice.zoho.com</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Zoho Mail</strong></td>
+                  <td>All client email — intros, follow-ups, full breakdown, quotes</td>
+                  <td><a href="https://mail.zoho.com/" target="_blank">mail.zoho.com</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Hubstaff</strong></td>
+                  <td>Time tracking — clock in/out, activity</td>
+                  <td><a href="https://hubstaff.com" target="_blank">hubstaff.com</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Qualia Connect</strong></td>
+                  <td>Generate quotes & manage title orders for FL & TX — used after a file is opened & handed to processing. You hand off to it, you don't run closings in it.</td>
+                  <td><a href="https://connect.qualia.com/orders/" target="_blank">connect.qualia.com</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout warn">
+              <label>Note discipline — non-negotiable</label>
+              Every call attempt, text, and conversation gets a Back Office note. e.g. "Called — no answer. SMS sent. Retry Day 3." This protects you and is how your work is measured.
+            </div>
+
+            <h3>Back Office — areas you live in</h3>
+            <ul>
+              <li><strong>Listings tab:</strong> active FL/TX listings; filter by state & title status.</li>
+              <li><strong>Client account:</strong> verify package (Basic $99 / Enhanced $399 / Concierge $999) & prepaid Y/N — this determines your whole approach.</li>
+              <li><strong>Notes:</strong> the system of record.</li>
+              <li><strong>Titles page:</strong> where you open a file post-execution.</li>
+            </ul>
+
+            <div class="callout info">
+              <label>SMS channel</label>
+              All SMS goes through <strong>Zoho Voice</strong> — same system you call from. Always sign texts with your name & title.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 3,
+        title: "Pricing — The Source of Truth",
+        content: `
+          <div class="content-page-header">
+            <div class="num">3</div>
+            <h2>Pricing — The Source of Truth</h2>
+          </div>
+          <div class="content-body">
+            <div class="callout warn">
+              <label>Memorize exactly — never guess on a call</label>
+              Pricing is the one thing you must never get wrong with a customer. Few numbers — know them cold before your first live call.
+            </div>
+
+            <h3>Florida</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Price</th>
+                  <th>When & how paid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Prepaid at checkout</td>
+                  <td><strong>$99</strong></td>
+                  <td>Paid when they bought their listing package.</td>
+                </tr>
+                <tr>
+                  <td>Added any time <em>before</em> under contract</td>
+                  <td><strong>$99</strong></td>
+                  <td>Can still prepay & lock $99 anytime before a contract is executed. Prepaid is prepaid.</td>
+                </tr>
+                <tr>
+                  <td>Selected at/after under contract (never prepaid)</td>
+                  <td><strong>$499</strong></td>
+                  <td>Paid at closing from proceeds. The rate if they wait until a contract is in hand.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout info">
+              <label>Honest FL framing</label>
+              Locking in $99 early saves the most; waiting until under contract is $499. Either way it beats the $700–$1,000+ most FL title companies charge — the $99 just saves the most. State this honestly; it's the seller's decision.
+            </div>
+
+            <h3>Texas</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Price</th>
+                  <th>When & how paid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Any Texas seller, always</td>
+                  <td><strong>$299</strong></td>
+                  <td><strong>Paid at closing from proceeds. Nothing collected upfront. No prepay option exists in TX.</strong></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout info">
+              <label>Why TX is the easier conversation</label>
+              Nothing to pay today, nothing to "lock in." $299 at closing from proceeds — same service, settled at the end. Most TX companies charge $400–$700, so the seller saves $100–$400+. No upfront ask = low-friction yes.
+            </div>
+
+            <h3>What the settlement fee includes (both states)</h3>
+            <ul>
+              <li>Title search & clearance / curative</li>
+              <li>Escrow & secure fund handling</li>
+              <li>Closing document prep (incl. deed)</li>
+              <li>Coordination with buyer's lender & title side</li>
+              <li>Recording & post-closing policy delivery</li>
+            </ul>
+
+            <h3>Other title & closing fees (appear on ALTA settlement statement)</h3>
+            <p>These fees are state-regulated or market-standard and appear on every closing statement alongside Beycome's settlement fee:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Fee Item</th>
+                  <th>Typical Range</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>State Documentary Stamp Tax</strong></td>
+                  <td>Varies by state & sale price</td>
+                  <td>FL: $0.70 per $100 of sale price. TX: $1.80 per $500. Seller typically pays.</td>
+                </tr>
+                <tr>
+                  <td><strong>ALTA Owner's Title Insurance</strong></td>
+                  <td>Varies by sale price</td>
+                  <td>State-set premium. Seller pays in FL (customary); buyer/lender negotiable in TX.</td>
+                </tr>
+                <tr>
+                  <td><strong>Owner Policy Endorsements & Fees</strong></td>
+                  <td>$100–$500</td>
+                  <td>Varies by property complexity, liens, title issues needing clearance.</td>
+                </tr>
+                <tr>
+                  <td><strong>Title Search</strong></td>
+                  <td>$75–$200</td>
+                  <td>Public records review; included in Beycome settlement fee.</td>
+                </tr>
+                <tr>
+                  <td><strong>Notary Fees</strong></td>
+                  <td>$50–$150</td>
+                  <td>RON (remote online notarization) or mobile notary travel.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>Insurance underwritten by <strong>Old Republic National Title</strong>. Title insurance premiums are state-set and identical across providers — what varies, and what you save the seller, is the <strong>settlement/closing fee</strong>. Premiums, transfer taxes, lender's-policy charges are separate standard line items.</p>
+
+            <div class="callout warn">
+              <label>Free with every deal</label>
+              Free offer review (attorneys often $200–$500), counter-offer help, e-sign support. FL: emphasized as a prepaid benefit. TX: standard with the $299-at-closing structure.
+            </div>
+
+            <h3>Example: Beycome Quote</h3>
+            <p>Here's what a typical title quote looks like:</p>
+            <div class="pdf-viewer">
+              <iframe src="TitleQuote.pdf" width="100%" height="600px" style="border: 1px solid var(--line); border-radius: var(--radius);"></iframe>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 4,
+        title: "End-to-End Process",
+        content: `
+          <div class="content-page-header">
+            <div class="num">4</div>
+            <h2>The Real Estate Selling Process (Start to Close)</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">A seller's journey from listing to closing. Understand the full timeline so you can educate and guide them.</p>
+
+            <h3>Phase 1 — Listing Active (Weeks 1–4+)</h3>
+            <p><strong>What's happening:</strong> The property is on the MLS, visible to buyer's agents and buyers. The listing agent markets the home (photos, open houses, showings, virtual tours).</p>
+            <p><strong>Seller's job:</strong> Keep the home showing-ready, accept showing requests.</p>
+            <p><strong>Your job:</strong> Contact the seller right away. They're thinking about title and closing costs now. If they prepaid, reassure them it's locked in. If not, explain their savings with Beycome. This is pure relationship-building — nothing is urgent yet.</p>
+
+            <h3>Phase 2 — Offer Received (Day 1–3)</h3>
+            <p><strong>What's happening:</strong> A buyer (or multiple buyers) submits a purchase offer. The offer includes:</p>
+            <ul>
+              <li>Sale price</li>
+              <li>Earnest money deposit (good-faith money, usually 1–3% of price)</li>
+              <li>Closing date (typically 30–45 days out)</li>
+              <li>Contingencies (inspection, appraisal, financing)</li>
+              <li>Title company designation</li>
+            </ul>
+            <p><strong>Seller's job:</strong> Decide whether to accept, counter, or reject.</p>
+            <p><strong>Your job:</strong> <strong>IMMEDIATE CALL.</strong> This is your highest-value moment. The seller just got an offer and is thinking about closing costs. You explain what they're paying Beycome vs. typical market rates, answer questions about title insurance and settlement fees. If they counter-offer or a second offer comes in, you stay on top of it. You may help them understand the terms of the offer (especially the title company clause).</p>
+
+            <div class="callout warn">
+              <label>The offer moment is critical</label>
+              Sellers make their title company decision within 48–72 hours of an offer. If you're not the first voice in their ear, a buyer's agent may have already locked in someone else. Call fast.
+            </div>
+
+            <h3>Phase 3 — Contract Execution (Days 3–7)</h3>
+            <p><strong>What's happening:</strong> Seller accepts or counters. Once both buyer and seller agree on all terms, the contract is executed (signed by both sides). At this moment, the deal is legally binding.</p>
+            <p><strong>Earnest money:</strong> Buyer's deposit is wired to the escrow/title company (that's Beycome if the seller chose you). Beycome holds this in a trust account as neutral third party.</p>
+            <p><strong>Your job:</strong> Help the seller e-sign via Zoho Sign. Once fully executed, you enter the buyer agent info, lender info, and contract details into the Back Office Titles page. Then upload the required documents and click "Open File" — this triggers the title processing team to begin the title search and examination.</p>
+            <div class="callout warn">
+              <label>Required uploads before clicking Open File — mandatory</label>
+              <strong>1. Executed Purchase Agreement / Contract</strong> — the fully signed contract.<br><br>
+              <strong>2. ABA Disclosure</strong> — found in the listing under the Documents tab in the Back Office. This must be uploaded on every single file, no exceptions. If you cannot find it, do not open the file — locate it first or ask Sam.
+            </div>
+
+            <div class="callout info">
+              <label>What happens the moment you click Open File</label>
+              A welcome email goes out automatically to all parties — seller, buyer's agent, and lender — introducing the title processor assigned to the file, explaining next steps, and setting expectations for the closing timeline. From that point forward, the title processor is the new point of contact for the file.
+              <br><br>
+              <strong>Florida processor:</strong> Sarah · (786) 952-7143 · sarah@beycometitle.com<br>
+              <strong>Texas processor:</strong> Amanda · (346) 532-3077 · amanda@beycometitle.com
+            </div>
+
+            <h3>Phase 3B — If the Deal Falls Through</h3>
+            <p>Deals occasionally fall apart — financing denial, failed inspection, buyer walks. Here's exactly what to do:</p>
+            <ol>
+              <li>Go to the Back Office listing and update the title status to <strong>"Cancelled."</strong></li>
+              <li>Upload the <strong>Release and Cancellation of Contract</strong> document to the listing's Documents section.</li>
+              <li>Note the reason: "Deal cancelled — [reason]. Release and Cancellation uploaded [date]."</li>
+              <li>If earnest money is in dispute, do not advise either party — route immediately to Sarah (FL) or Amanda (TX) and Sam.</li>
+            </ol>
+            <div class="callout warn">
+              <label>Never release earnest money without authorization</label>
+              Earnest money held in Beycome's escrow cannot be released without a signed Release and Cancellation or a court order. If the seller asks you to release funds, that goes to the processing team immediately — not you.
+            </div>
+
+            <h3>Phase 4 — Due Diligence Period (Days 7–21)</h3>
+            <p><strong>What's happening:</strong> Buyer's contingencies are being satisfied:</p>
+            <ul>
+              <li><strong>Home inspection:</strong> Buyer hires an inspector to check the property for defects. If issues are found, buyer can request repairs, credits, or renegotiate.</li>
+              <li><strong>Appraisal:</strong> Buyer's lender orders an appraisal to ensure the property value supports the loan amount. If appraisal comes in low, the deal may need renegotiation.</li>
+              <li><strong>Title search & examination:</strong> Our title team is searching public records for liens, judgments, encumbrances, or other defects that could cloud the title. If issues are found, they must be cleared before closing.</li>
+            </ul>
+            <p><strong>Seller's involvement:</strong> Minimal unless inspection issues trigger renegotiation.</p>
+            <p><strong>Your job:</strong> Stay aware of title issues. If a title defect is found that the seller must resolve (unpaid tax lien, ex-spouse claim, etc.), you may coordinate with the seller and attorney. Typically, title issues are rare and handled quietly by our back office.</p>
+
+            <h3>Phase 5 — Loan Underwriting (Days 15–30)</h3>
+            <p><strong>What's happening:</strong> Buyer's lender performs a full financial review — employment verification, credit check, bank statements, down payment source. The lender issues a "clear to close" once satisfied.</p>
+            <p><strong>Seller's involvement:</strong> None, unless the deal falls apart (rare).</p>
+            <p><strong>Your job:</strong> Monitor. If the buyer's financing falls through, the deal dies and earnest money may be released back to the buyer or disputed. This is handled by title / buyer's agent, not you.</p>
+
+            <h3>Phase 6 — Pre-Closing Prep (Days 20–35)</h3>
+            <p><strong>What's happening:</strong> The closing team (title company, lender, buyer, seller attorneys if applicable) is preparing final documents:</p>
+            <ul>
+              <li><strong>Closing statement (ALTA):</strong> The detailed breakdown of all costs — what the seller receives, what the buyer owes, all fees and credits.</li>
+              <li><strong>Deed:</strong> Document transferring ownership from seller to buyer.</li>
+              <li><strong>Title insurance policy:</strong> Issued and ready to deliver post-closing.</li>
+              <li><strong>Final walkthrough:</strong> Buyer does one final check of the property before closing.</li>
+            </ul>
+            <p><strong>Seller's involvement:</strong> Review the closing statement (should match contract). Ask questions about any surprises.</p>
+            <p><strong>Your job:</strong> Available for questions. Seller may ask, "What's this $200 on the closing statement?" or "Why is my net proceeds $X and not $Y?" You can refer them to our back office for details, or if you know the answer, clarify.</p>
+
+            <h3>Phase 7 — Closing Day (Day 30–45)</h3>
+            <p><strong>What's happening:</strong> Seller and buyer sign all closing documents (often electronically via RON — Remote Online Notarization, or in-person). Funds are wired. Title insurance is issued. The deed is recorded with the county.</p>
+            <p><strong>Closing options:</strong></p>
+            <ul>
+              <li><strong>In-office closing:</strong> Seller comes to Beycome's Miami or Houston office to sign in person.</li>
+              <li><strong>Mobile notary:</strong> A notary travels to the seller's home or office.</li>
+              <li><strong>Fully online (RON):</strong> Seller signs remotely via secure video notarization from any device, anywhere.</li>
+            </ul>
+            <p><strong>Seller receives:</strong> Net proceeds (sale price minus all fees, taxes, liens) via wire transfer to their bank account, typically within hours of recording.</p>
+            <p><strong>Your job:</strong> Your role is complete. Closing and fund transfer are handled by our title processing team and lender. You've successfully moved a deal from prospect to closed.</p>
+
+            <div class="callout info">
+              <label>Timeline summary</label>
+              Listing active → Offer (7–30 days) → Contract execution (same day) → Due diligence & underwriting (15–30 days) → Closing (day 30–45). You're most valuable in the first 72 hours after offer. After execution, the machine runs without you.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 5,
+        title: "Daily Workflow",
+        content: `
+          <div class="content-page-header">
+            <div class="num">5</div>
+            <h2>Your Daily Workflow</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">What a focused, fully-ramped day looks like.</p>
+
+            <ul>
+              <li><strong>Clock in (Hubstaff).</strong> Review Back Office: new listings, follow-ups due, offer notifications.</li>
+              <li><strong>Offers first.</strong> Any new offer = immediate call before anything else.</li>
+              <li><strong>New listings next.</strong> Every new active listing = same-day first call (then SMS/email if unanswered).</li>
+              <li><strong>Follow-up block.</strong> Work Day 3/5/7+ list, rotate channel.</li>
+              <li><strong>Log as you go</strong> — real time, not end of day.</li>
+            </ul>
+
+            <div class="callout info">
+              <label>Priority order, every day</label>
+              1) Offers → 2) New listings → 3) Scheduled follow-ups → 4) Monthly/open-house. Short on time → protect 1 & 2.
+            </div>
+
+            <h3>Non-negotiables</h3>
+            <ul>
+              <li>Call before text, every time.</li>
+              <li>No non-prepaid seller >3 days untouched.</li>
+              <li>Every touch logged.</li>
+              <li>Never quote an unsure price — confirm pricing section or ask Sam.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 6,
+        title: "Call Scripts",
+        content: `
+          <div class="content-page-header">
+            <div class="num">6</div>
+            <h2>Call Scripts (Phone-First)</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Calls are first contact, always. Guides, not word-for-word reads. Goal: <strong>inform, not pressure</strong>.</p>
+
+            <div class="callout info">
+              <label>Universal opener</label>
+              "Hi, is this [Name]? Hey [Name], this is [Your Name] with Beycome — I'll be your point of contact on the title side. Congrats on getting your home live. Is now an okay moment for two minutes?"
+            </div>
+
+            <div class="script">
+              <div class="script-header">
+                <span class="tag fl">FL · Prepaid</span>
+                <span>Call 1</span>
+              </div>
+              <div class="script-body">
+                <div class="script-role">Goal</div>
+                <p>Pure welcome & reassurance. Nothing to sell.</p>
+
+                <div class="script-role">Talking points</div>
+                <div class="speak">"Since you prepaid for title you're completely set — your title search, insurance through Old Republic, and settlement are all handled. I'm just your person for it. When offers come in I'll help you read the terms, and I can convert the accepted offer into an e-sign so it all stays in one place."</div>
+
+                <div class="script-role">Close</div>
+                <div class="speak">"I'll let you go — save my number, reach out anytime. Good luck with the showings."</div>
+              </div>
+            </div>
+
+            <div class="script">
+              <div class="script-header">
+                <span class="tag fl">FL · Non-Prepaid</span>
+                <span>Call 2</span>
+              </div>
+              <div class="script-body">
+                <div class="script-role">Goal</div>
+                <p>Educate on seller's right to choose title; plant Beycome Title; soft offer.</p>
+
+                <div class="script-role">Core message</div>
+                <div class="speak">"One thing worth knowing early: in Florida, when the seller pays for title — the norm in most of the state — you're paying, so you should choose who handles your closing. We have Beycome Title, underwritten by Old Republic. Lock in now it's $99; wait until contract it's $499 — either way well under the $700–$1,000+ most FL companies charge."</div>
+
+                <div class="script-role">Soft offer</div>
+                <div class="speak">"Can I send a quick quote and the $99 prepay link? No pressure — lock it whenever you're ready, or not at all."</div>
+              </div>
+            </div>
+
+            <div class="script">
+              <div class="script-header">
+                <span class="tag tx">TX</span>
+                <span>Call 3</span>
+              </div>
+              <div class="script-body">
+                <div class="script-role">Goal</div>
+                <p>Easy yes: nothing due now, $299 at closing.</p>
+
+                <div class="script-role">Core message</div>
+                <div class="speak">"Two quick things. First — in Texas the seller picks the title company, not the buyer's agent. Second — most TX companies charge $400–$700; ours is $299, paid at closing from your proceeds. Nothing due upfront. We're licensed in Texas, underwritten by Old Republic. Close in person at our Houston office, fully online, or mobile notary comes to you."</div>
+
+                <div class="script-role">Soft offer</div>
+                <div class="speak">"Want me to send a quote so it's on file? Nothing to lock in — just means you're set when an offer shows up."</div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 7,
+        title: "SMS & Email Templates",
+        content: `
+          <div class="content-page-header">
+            <div class="num">7</div>
+            <h2>SMS & Email Templates</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead"><strong>Tier 1</strong> = short first-touch, same day as unanswered call. <strong>Tier 2</strong> = full breakdown, once they engage.</p>
+
+            <h3>SMS — FL Non-Prepaid (New Listing)</h3>
+            <p>Hi [Name] — your listing's live, congrats! I'm [Your Name] with Beycome, your point of contact through closing. Two things worth knowing:</p>
+            <p>1. In Florida, the seller picks the title & escrow company — not the buyer's agent.</p>
+            <p>2. Most FL title companies charge $700–$1,000+. Ours is $99 now or $499 at closing.</p>
+            <p>Licensed in FL, underwritten by Old Republic. Close online or by mobile notary, free offer review.</p>
+            <p>Want me to send a quote + the $99 prepay link?</p>
+            <p>— [Your Name], Title Sales @ Beycome</p>
+
+            <h3>SMS — TX (New Listing)</h3>
+            <p>Hi [Name] — your listing's live, congrats! I'm [Your Name] with Beycome, your point of contact through closing. Two things worth knowing:</p>
+            <p>1. In Texas, the seller picks the title & escrow company — not the buyer's agent.</p>
+            <p>2. Most TX companies charge $400–$700. Ours is $299, paid at closing from proceeds. Nothing due upfront.</p>
+            <p>Houston-based, underwritten by Old Republic. Close in person, online, or by mobile notary. Free offer review.</p>
+            <p>Want me to send a quote so it's on file?</p>
+            <p>— [Your Name], Title Sales @ Beycome</p>
+
+            <h3>Email Tier 1 — FL Non-Prepaid</h3>
+            <p><strong>Subject:</strong> Your home is live — one thing worth knowing about closing</p>
+            <p>Hi [Name],</p>
+            <p>Congrats on going live! I'm [Your Name] from Beycome's title team. One thing worth knowing early: in Florida, when the seller pays for title, you should choose who handles your closing. Beycome Title is $99 locked in now, or $499 at closing — well under the $700–$1,000+ most FL companies charge. Online or mobile-notary closing, free offer review.</p>
+            <p>Want a quote + the $99 prepay link on hand? Reply here or text me at [Your Direct Line] — no pressure.</p>
+            <p>Best, [Your Name] — Title Sales @ Beycome</p>
+
+            <h3>Email Tier 1 — TX</h3>
+            <p><strong>Subject:</strong> Your home is live — quick note on closing in Texas</p>
+            <p>Hi [Name],</p>
+            <p>Congrats on going live! I'm [Your Name] from Beycome's title team. Two quick things: in Texas the seller picks the title company, and our fee is $299 paid at closing from proceeds — nothing upfront, vs. $400–$700 most TX companies charge.</p>
+            <p>Houston-based, underwritten by Old Republic. Close in person, online, or by mobile notary. Free offer review.</p>
+            <p>Want a quote on file? Reply or text me at [Your Direct Line].</p>
+            <p>Best, [Your Name] — Title Sales @ Beycome</p>
+          </div>
+        `
+      },
+      {
+        id: 8,
+        title: "Florida & Texas Playbooks",
+        content: `
+          <div class="content-page-header">
+            <div class="num">8</div>
+            <h2>Florida & Texas Playbooks</h2>
+          </div>
+          <div class="content-body">
+            <h3>Florida Playbook</h3>
+            <p class="lead">Everything specific to selling and closing title in Florida.</p>
+
+            <h4>The Florida hook: seller controls the title choice</h4>
+            <p>In Florida it is customary for the <strong>seller to pay for the owner's title policy</strong> across most of the state. When the seller pays, the seller reasonably designates the closing agent. This is the basis of the consultative FL pitch: <em>"if you're paying for it, you should choose who represents you."</em></p>
+
+            <div class="callout warn">
+              <label>Miami-Dade & Broward County Exception</label>
+              In Miami-Dade and Broward counties, local custom flips — the <strong>buyer</strong> typically pays for and selects the title company. This is reflected in FL contract Paragraph 9(c), checkbox (iii). Do not pitch the seller's-right-to-choose angle in these counties without first confirming which box is checked. If the buyer is paying, the buyer chooses — and that's normal there. You can still offer Beycome's competitive rate as an option, but the pitch angle changes.
+            </div>
+
+            <h4>FL pricing recap</h4>
+            <ul>
+              <li><strong>$99</strong> prepaid (anytime before under contract).</li>
+              <li><strong>$499</strong> if selected at/after under contract.</li>
+              <li>Both beat the $700–$1,000+ typical FL settlement fee.</li>
+            </ul>
+
+            <h4>FL closing options</h4>
+            <p>Present: <strong>online</strong> (secure e-closing) or <strong>mobile notary</strong> (comes to the seller). Always offer both convenient options — never just one.</p>
+
+            <div class="callout info">
+              <label>Office of record</label>
+              Beycome Title of Florida LLC, License #G142689, 5701 Sunset Drive, Suite 101, South Miami, FL 33143 · (786) 952-7143 · florida@beycometitle.com · M–F 9–5 EST.
+            </div>
+
+            <h3>Texas Playbook</h3>
+            <p class="lead">Everything specific to selling and closing title in Texas.</p>
+
+            <h4>The Texas hook: seller picks title, $299 at closing</h4>
+            <p>In Texas the <strong>seller selects the title and escrow company</strong> — not the buyer or buyer's agent. The buyer's agent will pre-fill their preferred company in <strong>Paragraph 6A</strong> of the TREC contract; the seller can change it. Pair this with the price: <strong>$299, paid at closing from proceeds, nothing upfront</strong>.</p>
+
+            <div class="callout info">
+              <label>Why TX converts easily</label>
+              There is no upfront ask. The seller agrees now, pays $299 from proceeds at closing. Same service, lower friction. Don't over-sell it — the structure does the work.
+            </div>
+
+            <h4>TX closing options</h4>
+            <p>Three, all offered: <strong>in person at the Houston office</strong>, <strong>online</strong>, or <strong>mobile notary</strong> to the seller. Many TX competitors are in-person-only or add $150–$300 mobile-notary fees — Beycome does not.</p>
+
+            <div class="callout info">
+              <label>Office of record</label>
+              Beycome Title of Texas LLC, License #3461702, 1800 West Loop South, Suite 1990, Houston, TX 77027 · (346) 532-3077 · texas@beycometitle.com · M–F 9–5 CST.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 9,
+        title: "Objections & Rebuttals",
+        content: `
+          <div class="content-page-header">
+            <div class="num">9</div>
+            <h2>Objections & Rebuttals</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Same objections recur. Know them cold. Never argue — acknowledge, inform, offer value.</p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th style="min-width: 200px;">Objection</th>
+                  <th>Response</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>"I already have a title company."</td>
+                  <td>"Totally understand. Do you know what they're charging in settlement fees? Most sellers are surprised it's $700–$1,000+ in FL ($400–$700 in TX). Ours is [FL $99/$499 · TX $299], same Old Republic coverage. If they haven't started anything, quick comparison might be worth it — want a quote?"</td>
+                </tr>
+                <tr>
+                  <td>"Is title insurance required?"</td>
+                  <td>"If the buyer's financing, yes — their lender requires it. Even cash, owner's title protects you from claims that surface after closing. It's really a question of who handles it and what you pay."</td>
+                </tr>
+                <tr>
+                  <td>"Why prepay? What if I don't sell?" (FL)</td>
+                  <td>"Fair question. The $99 locks the rate and activates your free offer support from day one. If the deal doesn't happen, we work with you. Most find the offer support alone is worth it the moment that first offer lands."</td>
+                </tr>
+                <tr>
+                  <td>"Can I really close remotely?"</td>
+                  <td>"Yes — fully online via secure video, or a mobile notary comes to you. [TX: or in person at our Houston office.] No office visit required."</td>
+                </tr>
+                <tr>
+                  <td>"The buyer's agent picked their title company."</td>
+                  <td>"That's common — they pre-fill in [FL Paragraph 9 · TX Paragraph 6A]. But the seller chooses, especially when paying. Switching before you sign is simple, and I'll handle the mechanics. Want me to walk you through it?"</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout warn">
+              <label>Tone rule</label>
+              If you feel yourself "winning an argument," stop. You're informing, not debating. The seller deciding for themselves — with good information — is the goal.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 10,
+        title: "Generating a Quote",
+        content: `
+          <div class="content-page-header">
+            <div class="num">10</div>
+            <h2>Generating a Quote</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Step-by-step walkthroughs for generating a title quote in Qualia and the Back Office. Follow these before your first live quote.</p>
+
+            <h3>Qualia — How to Generate a Seller Net Sheet</h3>
+            <p>Use this interactive guide to walk through generating a seller net sheet in Qualia Connect:</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);">
+              <iframe src="https://scribehow.com/embed/How_to_Generate_a_Seller_Net_Sheet_in_Qualia__X287u_DaRY6qgmK60wH-dA" width="100%" height="100%" allowfullscreen style="position: absolute; top: 0; left: 0; border: none;"></iframe>
+            </div>
+
+            <h3>Back Office — How to Download a Title Quote</h3>
+            <p>Use this interactive guide to walk through generating and downloading a title quote from the Beycome Back Office:</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);">
+              <iframe src="https://scribehow.com/embed/How_to_Download_a_Title_Quote__bipyB60gTlu_eR7VR2w3og" width="100%" height="100%" allowfullscreen style="position: absolute; top: 0; left: 0; border: none;"></iframe>
+            </div>
+
+            <h3>Back Office — How to Open a Title Order</h3>
+            <p>Follow this step-by-step guide after a contract is executed and you're ready to open the file:</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);">
+              <iframe src="https://scribehow.com/embed/Opening_a_Title_Order__bEz6-dJQQLS9XfUd0XrgJA" width="100%" height="100%" allowfullscreen style="position: absolute; top: 0; left: 0; border: none;"></iframe>
+            </div>
+
+            <h3>Back Office — How to View Property Offers & Documents</h3>
+            <p>Use this guide to access a customer's offers and find documents like the ABA Disclosure:</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);">
+              <iframe src="https://scribehow.com/embed/How_to_view_property_offers__documents__u3oc5TWVQ26bb-dd4JVdmA" width="100%" height="100%" allowfullscreen style="position: absolute; top: 0; left: 0; border: none;"></iframe>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 11,
+        title: "Resources & Glossary",
+        content: `
+          <div class="content-page-header">
+            <div class="num">11</div>
+            <h2>Resources & Glossary</h2>
+          </div>
+          <div class="content-body">
+            <h3>Self-Study for Week 1</h3>
+            <ol>
+              <li><strong>beycometitle.com</strong> — Read every page; review the FAQ and Glossary thoroughly.</li>
+              <li><strong>beycome.com</strong> — Sell / Buy / Title / How It Works / FAQ. Know the packages.</li>
+              <li><strong>Florida contract</strong> — YouTube: "Florida AS-IS Residential Contract explained." Know Para 9(c) title designation.</li>
+              <li><strong>Texas contract</strong> — YouTube: "TREC One to Four Family Residential Contract explained." Know Para 6A title policy/company.</li>
+            </ol>
+
+            <h3>Quick Glossary</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Definition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Title</strong></td>
+                  <td>Legal ownership of the property — the right to possess and transfer it.</td>
+                </tr>
+                <tr>
+                  <td><strong>Title insurance</strong></td>
+                  <td>A policy protecting against financial loss from defects in title. Premium is state-set.</td>
+                </tr>
+                <tr>
+                  <td><strong>Owner's policy</strong></td>
+                  <td>Protects the buyer/owner's equity. In FL, customarily seller-paid in most of the state.</td>
+                </tr>
+                <tr>
+                  <td><strong>Settlement / closing fee</strong></td>
+                  <td>The fee for handling escrow, document prep, coordination, recording. This is what varies — Beycome's is the low flat fee.</td>
+                </tr>
+                <tr>
+                  <td><strong>Title commitment</strong></td>
+                  <td>The title company's promise to issue a policy, listing what must be cleared first.</td>
+                </tr>
+                <tr>
+                  <td><strong>Escrow</strong></td>
+                  <td>A neutral party holding funds/documents until all closing conditions are met.</td>
+                </tr>
+                <tr>
+                  <td><strong>Earnest money</strong></td>
+                  <td>Buyer's good-faith deposit, held in escrow, credited at closing.</td>
+                </tr>
+                <tr>
+                  <td><strong>RON</strong></td>
+                  <td>Remote Online Notarization — signing fully online via secure video.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mobile notary</strong></td>
+                  <td>A notary travels to the seller to complete signing in person, anywhere.</td>
+                </tr>
+                <tr>
+                  <td><strong>Closing / settlement</strong></td>
+                  <td>The final step: documents signed, funds disbursed, deed recorded, ownership transfers.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      },
+      {
+        id: 12,
+        title: "FAQ",
+        content: `
+          <div class="content-page-header">
+            <div class="num">12</div>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Common seller questions and how to answer them.</p>
+
+            <h3>Pricing & Fees</h3>
+            
+            <h4>How do you get your fees so low?</h4>
+            <p>We leverage technology for efficiency throughout the closing process and continually seek ways to reduce costs. No referral kickbacks to agents — those savings go directly to you.</p>
+
+            <h4>What's included in the settlement fee?</h4>
+            <p>The settlement side: escrow & closing coordination, document prep including the deed, title search & exam, recording, courier/wire. The title insurance premium itself is set by the state — same at any company — and shows as a separate line. So what you're really comparing between companies is the settlement fee, which is where we save you money.</p>
+
+            <h4>Why is there a difference between FL prepaid ($99) and non-prepaid ($499)?</h4>
+            <p>Prepaid locks in a committed rate early when you have options. At-closing pricing reflects the fact that the deal is already in motion and you have fewer options to shop. It's still competitive, but the prepaid option rewards early decision-making with the best rate.</p>
+
+            <h3>Service & Closing</h3>
+
+            <h4>I have an offer and I want to work with you, what do I do next?</h4>
+            <p>Simply add Beycome Title's details to your contract's "Escrow Agent Name" section.</p>
+            <p><strong>For Florida:</strong> Beycome Title of Florida LLC, 5701 Sunset Dr, Suite 101, South Miami, FL 33143, (786) 952-7143</p>
+            <p><strong>For Texas:</strong> Beycome Title of Texas LLC, 1800 West Loop South, Suite 1990, Houston, TX 77027, (346) 532-3077</p>
+
+            <h4>How do you do closing day?</h4>
+            <p>We offer three flexible options:</p>
+            <ul>
+              <li><strong>In-office signing</strong> at our South Miami or Houston locations</li>
+              <li><strong>Mobile notary</strong> who travels to you</li>
+              <li><strong>Fully online closing</strong> using Remote Online Notarization (RON) — which lets buyers, sellers, and lenders sign from any device, anywhere in the world</li>
+            </ul>
+
+            <h4>Can I really close fully online?</h4>
+            <p>Yes — completely online via secure video notarization (RON). Or if you prefer, a mobile notary can come to your home, office, or anywhere convenient. You have full control over how you close.</p>
+
+            <h4>What if I have questions during the closing process?</h4>
+            <p>I'm your point of contact through the entire process. Any questions, reach out directly. If I hand off to our processing team after you're under contract, I'll make sure you have their direct contact as well.</p>
+
+            <h3>Title Company & Process</h3>
+            <h4>What is closing and title insurance?</h4>
+            <p>Closing transfers the deed from seller to buyer after signing a sales contract. Title insurance is a policy that protects you from any financial loss sustained from defects in a title to a property — such as unknown liens, recording errors, or undisclosed heirs.</p>
+
+            <h4>Is title insurance required?</h4>
+            <p>If the buyer is financing, yes — their lender requires it, non-negotiable. Even in a cash sale, owner's title insurance protects you from claims that surface after closing. It's really a question of who handles it and what you pay.</p>
+
+            <h4>Who chooses the title company?</h4>
+            <p>The choice is negotiable in any real estate transaction. What matters most is cost transparency — settlement fees vary by company, though state-regulated title insurance premiums remain the same regardless of which company you choose.</p>
+
+            <h4>Is Beycome Title legit? I've never heard of it.</h4>
+            <p>Every policy is underwritten by Old Republic National Title — a Fortune 500 underwriter, 100+ years, among the fewest complaints in the industry. Beycome has supported thousands of closings. Licensed in FL (#G142689) and TX (#3461702).</p>
+
+            <h4>What if the buyer's agent already put in a different title company?</h4>
+            <p>That's common — they pre-fill their preferred company. But you choose, especially when you're paying. Switching before you sign is simple, and I'll handle the mechanics with all parties.</p>
+
+            <h3>Florida Specific</h3>
+            <h4>Why do I get to choose the title company in Florida?</h4>
+            <p>In Florida it's customary for the seller to pay for the owner's title policy. When you're paying, you have the right to select who handles your closing. It's your money, so you should choose who represents your interests.</p>
+
+            <h4>Is the $99 prepaid offer available forever?</h4>
+            <p>The $99 rate is locked in anytime before your home goes under contract. Once a contract is executed, the rate becomes $499. So the sooner you lock it in, the more you save.</p>
+
+            <h3>Texas Specific</h3>
+            <h4>Why do I get to choose the title company in Texas?</h4>
+            <p>Texas law explicitly gives the seller the right to select the title and escrow company. The buyer's agent may suggest their preferred company, but the choice is yours, and switching is straightforward.</p>
+
+            <h4>How does the "$299 at closing from proceeds" work?</h4>
+            <p>Nothing is paid upfront. When you close, the $299 settlement fee is deducted from your proceeds on the closing statement, so you don't write a separate check. It's all settled at closing.</p>
+
+            <h3>After Closing</h3>
+            <h4>How do I get my money after closing?</h4>
+            <p>Sellers receive their net proceeds via wire transfer to their bank account, typically the same day the deed is recorded with the county — usually within a few hours of signing. Certified check requests are also available. We provide a detailed closing statement (ALTA settlement statement) so you can verify every deduction before funds are released.</p>
+
+            <div class="callout info">
+              <label>Not answered here?</label>
+              Check the other sections, or ask Sam. There's always an answer.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 13,
+        title: "Day-1 Operating Playbook",
+        content: `
+          <div class="content-page-header">
+            <div class="num">13</div>
+            <h2>Day-1 Operating Playbook</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Use this page as your live checklist and decision guide while you work real leads.</p>
+
+            <h3>Live Call Cheat Sheet (Keep This Open During Calls)</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>What you need fast</th>
+                  <th>Use this on the call</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>30-second opener</strong></td>
+                  <td>"Hi [Name], this is [Your Name] with Beycome Title. Quick congrats on your listing. I am your title point of contact so closing is smooth when offers come in. Do you have 2 minutes?"</td>
+                </tr>
+                <tr>
+                  <td><strong>4 qualification questions</strong></td>
+                  <td>1) Have you received any offers yet? 2) Are you already under contract? 3) Did you already select a title company? 4) Are you in FL or TX?</td>
+                </tr>
+                <tr>
+                  <td><strong>Florida pricing anchor</strong></td>
+                  <td>$99 prepaid before contract, $499 at/after contract. Typical FL settlement is often $700-$1,000+.</td>
+                </tr>
+                <tr>
+                  <td><strong>Texas pricing anchor</strong></td>
+                  <td>$299 at closing from proceeds, no upfront payment. Typical TX settlement is often $400-$700.</td>
+                </tr>
+                <tr>
+                  <td><strong>Offer received response</strong></td>
+                  <td>Immediate call + SMS. Review title line in contract before signature. Offer to handle title company swap mechanics.</td>
+                </tr>
+                <tr>
+                  <td><strong>What to say about title insurance</strong></td>
+                  <td>"Premiums are state-set across companies. What usually varies is the settlement fee and service quality."</td>
+                </tr>
+                <tr>
+                  <td><strong>Mandatory before Open File</strong></td>
+                  <td>Upload executed contract + ABA Disclosure (listing Documents tab). No exceptions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Post-handoff contact</strong></td>
+                  <td>FL Processor: Sarah (786) 952-7143, sarah@beycometitle.com. TX Processor: Amanda (346) 532-3077, amanda@beycometitle.com.</td>
+                </tr>
+                <tr>
+                  <td><strong>Escalate immediately</strong></td>
+                  <td>Earnest money dispute, legal interpretation, upset customer, pricing exception, missing required docs. Loop Sam + processor.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout warn">
+              <label>Three hard rules</label>
+              1) Call before text. 2) Never guess pricing. 3) If it is not in Back Office notes, it did not happen.
+            </div>
+
+            <h3>Call Outcomes: Exact Next Action</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Call outcome</th>
+                  <th>What you do next</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>No answer</strong></td>
+                  <td>Leave VM if possible, send matching SMS, then same-day email. Add Back Office note and schedule retry Day 3.</td>
+                </tr>
+                <tr>
+                  <td><strong>Not interested right now</strong></td>
+                  <td>Acknowledge, ask permission to follow up after first offer, note objection reason, set 14-day follow-up task.</td>
+                </tr>
+                <tr>
+                  <td><strong>Call me later</strong></td>
+                  <td>Confirm exact day/time, calendar it immediately, send brief confirmation SMS, then call on time.</td>
+                </tr>
+                <tr>
+                  <td><strong>Offer received</strong></td>
+                  <td>Immediate call + SMS. Walk title line in contract, explain pricing, offer to handle title designation update before signing.</td>
+                </tr>
+                <tr>
+                  <td><strong>Already with another title company</strong></td>
+                  <td>Ask whether file is truly opened. If not opened, offer comparison quote and switch help. If opened, document and move to nurture.</td>
+                </tr>
+                <tr>
+                  <td><strong>Deal cancelled</strong></td>
+                  <td>Set status to <strong>Cancelled</strong>, upload <strong>Release and Cancellation</strong>, add reason note, escalate disputes to processor + Sam.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Escalation Matrix</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Issue type</th>
+                  <th>Owner</th>
+                  <th>SLA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pricing exception / discount request</td>
+                  <td>Sam</td>
+                  <td>Same business day</td>
+                </tr>
+                <tr>
+                  <td>Title defect (lien, probate, judgment)</td>
+                  <td>Assigned title processor</td>
+                  <td>Immediate handoff</td>
+                </tr>
+                <tr>
+                  <td>Earnest money dispute</td>
+                  <td>Processor + Sam</td>
+                  <td>Immediate handoff</td>
+                </tr>
+                <tr>
+                  <td>Legal interpretation question</td>
+                  <td>Seller attorney referral</td>
+                  <td>Immediate handoff</td>
+                </tr>
+                <tr>
+                  <td>Upset customer / complaint risk</td>
+                  <td>Sam first, processor copied</td>
+                  <td>Within 1 hour</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Pre-Open-File Quality Check (Must Pass)</h3>
+            <ul>
+              <li>Contract fully executed (all required signatures present).</li>
+              <li>Executed purchase agreement uploaded.</li>
+              <li>ABA Disclosure uploaded from listing Documents tab.</li>
+              <li>Buyer agent contact details complete.</li>
+              <li>Lender details complete (or marked Cash).</li>
+              <li>Closing date, purchase price, earnest money entered correctly.</li>
+              <li>Back Office note added with summary + handoff context.</li>
+            </ul>
+
+            <div class="callout warn">
+              <label>No shortcuts on uploads</label>
+              Missing ABA Disclosure or missing contract upload creates compliance and processing delays. If either is missing, do not open the file yet.
+            </div>
+
+            <h3>First-Day Execution Checklist</h3>
+            <ol>
+              <li>Log into Back Office, Zoho Voice, Zoho Mail, Hubstaff, Qualia.</li>
+              <li>Find one live listing and locate: offers tab + documents tab + ABA Disclosure.</li>
+              <li>Generate one quote in Qualia and one in Back Office using Section 10 guides.</li>
+              <li>Practice one FL and one TX script call with Sam or role-play partner.</li>
+              <li>Open one practice file flow: verify required fields and required docs.</li>
+              <li>Send one professional follow-up email and SMS template test.</li>
+            </ol>
+
+            <h3>Bad-News Script Starters</h3>
+            <p><strong>Low appraisal:</strong> "Quick update: appraisal came in below contract price. This usually means buyer/seller renegotiate price or terms. Our title team will stay aligned with both sides while your agent advises on the numbers."</p>
+            <p><strong>Inspection credit request:</strong> "Buyer requested credits after inspection. That's common. Your agent handles negotiation, and we'll keep title timelines aligned once terms are finalized."</p>
+            <p><strong>Financing denied:</strong> "Looks like lender approval did not clear. We'll mark the file correctly and guide the cancellation/release steps so your documentation is clean and you're ready for the next offer."</p>
+            <p><strong>Closing delayed:</strong> "Closing moved due to lender/title timing. We will send updated timeline details today and keep all parties aligned so nothing gets missed."</p>
+          </div>
+        `
+      },
+      {
+        id: 14,
+        title: "30 / 60 / 90 Ramp Plan",
+        content: `
+          <div class="content-page-header">
+            <div class="num">14</div>
+            <h2>30 / 60 / 90 Ramp Plan</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">This role is <strong>dedicated, full-time</strong>. <strong>Target: 90+ deals under contract per month by end of Month 3.</strong></p>
+
+            <div class="callout info">
+              <label>How to read this</label>
+              Days 1–30 are learning and building habits — low deal expectations on purpose. Days 31–60 you're independent and scaling volume. Days 61–90 you hit and hold the full-time bar. Activity targets are the inputs that produce the outcome; protect the activity and the deals follow.
+            </div>
+
+            <h3>Days 1–30 — Learn & Build Habits</h3>
+            <p><strong>Outcome target:</strong> ~25–35 deals under contract by day 30.</p>
+            <p><strong>Focus:</strong></p>
+            <ul>
+              <li>Finish all resources self-study by end of week 1.</li>
+              <li>Memorize pricing & the decision tree cold.</li>
+              <li>Shadow/role-play all call scripts with Sam; first live calls supervised.</li>
+              <li>Master the Back Office: listings, notes, Titles page, Open File flow.</li>
+              <li><strong>Habit:</strong> call-first discipline + a note on every single touch, from day one.</li>
+            </ul>
+
+            <h3>Days 31–60 — Independent & Scaling</h3>
+            <p><strong>Outcome target:</strong> ~55–70 deals under contract in Month 2.</p>
+            <p><strong>Focus:</strong></p>
+            <ul>
+              <li>Fully independent on all call types incl. the offer-received conversion call.</li>
+              <li>Tight cadence: no non-prepaid seller >3 days untouched.</li>
+              <li>Confident contract walkthroughs (FL 9(c) / TX 6A) on live offers.</li>
+              <li>Objections handled cold without reaching for notes.</li>
+            </ul>
+
+            <h3>Days 61–90 — Full-Time Bar</h3>
+            <p><strong>Outcome target:</strong> <strong>90+ deals under contract by end of Month 3</strong>, then sustained.</p>
+            <p><strong>Focus:</strong></p>
+            <ul>
+              <li>Consistent 90+/month run rate — the new normal, not a peak.</li>
+              <li>Self-directed prioritization (offers → new listings → cadence) without prompting.</li>
+              <li>Coaching-ready: your notes & outcomes are clean enough to review and learn from.</li>
+              <li>Spotting process improvements and raising them to Sam.</li>
+            </ul>
+
+            <div class="callout warn">
+              <label>The one habit that makes the number</label>
+              Call-first + immediate offer response + no seller going cold. The 90+ isn't hit by working harder on deals — it's hit by never letting a winnable one slip through stale follow-up. Protect the activity; the deals are the output.
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    let currentPage = 1;
+
+    function renderJumpNav() {
+      const nav = document.getElementById('jump-nav-list');
+      if (!nav) return;
+
+      nav.innerHTML = sections.map((section, index) => {
+        const page = index + 1;
+        return `<button class="jump-link${page === currentPage ? ' active' : ''}" onclick="displayPage(${page})">${page}. ${section.title}</button>`;
+      }).join('');
+    }
+
+    function startTraining() {
+      document.getElementById('welcome-view').classList.remove('active');
+      document.getElementById('content-view').classList.add('active');
+      renderJumpNav();
+      displayPage(1);
+    }
+
+    function displayPage(pageNum) {
+      if (pageNum < 1 || pageNum > sections.length) return;
+
+      currentPage = pageNum;
+      const section = sections[pageNum - 1];
+
+      document.getElementById('content-container').innerHTML = section.content;
+      document.getElementById('current-page').textContent = pageNum;
+      document.getElementById('total-pages').textContent = sections.length;
+      renderJumpNav();
+
+      document.getElementById('prev-btn').disabled = pageNum === 1;
+      document.getElementById('next-btn').disabled = pageNum === sections.length;
+
+      window.scrollTo(0, 0);
+    }
+
+    function nextPage() {
+      if (currentPage < sections.length) {
+        displayPage(currentPage + 1);
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        displayPage(currentPage - 1);
+      }
+    }
+  </script>
+</body>
+</html>
