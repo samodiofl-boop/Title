@@ -2215,10 +2215,25 @@
       }
     );
 
-    const STORAGE_KEY = 'beycome_title_training_state_v2';
+    const STORAGE_KEY = 'beycome_title_training_state_v1';
     const QUIZ_SECTIONS = [2, 3, 4, 8, 9, 16];
     const SCENARIO_PARTS = ['part1', 'part2', 'part3'];
     const ASSESSMENT_SECTIONS = new Set([...QUIZ_SECTIONS, 15]);
+    const SCENARIO_CHECKLIST_SCORING = {
+      fullPointMinChecked: 4,
+      partialPointMinChecked: 2
+    };
+    const PRIORITIZATION_EXPECTED_ORDER = {
+      offerNoTitle: 1,
+      prepaidOfferHelp: 2,
+      fileReady: 3,
+      newListings: 4
+    };
+    const PRIORITIZATION_SCORING = {
+      fullPointMinMatches: 3,
+      partialPointMinMatches: 2,
+      fullPointMinRationaleChars: 40
+    };
 
     const quizConfig = {
       2: {
@@ -2840,15 +2855,17 @@
       let mediaRecorder = null;
       let chunks = [];
       let stream = null;
+      const mimeType = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg']
+        .find(type => MediaRecorder.isTypeSupported(type));
 
       startBtn.onclick = async () => {
         try {
           stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
           chunks = [];
           mediaRecorder.ondataavailable = event => chunks.push(event.data);
           mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'audio/webm' });
+            const blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
             const url = URL.createObjectURL(blob);
             audio.src = url;
             audio.style.display = 'block';
@@ -2885,7 +2902,9 @@
           document.getElementById(`scenario-status-${partKey}`).textContent = 'Please add your response before submitting.';
           return;
         }
-        const points = checklist.length >= 4 ? 2 : checklist.length >= 2 ? 1 : 0;
+        const points = checklist.length >= SCENARIO_CHECKLIST_SCORING.fullPointMinChecked
+          ? 2
+          : checklist.length >= SCENARIO_CHECKLIST_SCORING.partialPointMinChecked ? 1 : 0;
         appState.scenarioResponses[partKey] = {
           ...appState.scenarioResponses[partKey],
           text,
@@ -2910,9 +2929,12 @@
           document.getElementById('scenario-status-part3').textContent = 'Please rank all items uniquely and add your reasoning.';
           return;
         }
-        const expected = { offerNoTitle: 1, prepaidOfferHelp: 2, fileReady: 3, newListings: 4 };
-        const matches = Object.keys(expected).reduce((sum, key) => sum + (priorities[key] === expected[key] ? 1 : 0), 0);
-        const points = matches >= 3 && rationale.length >= 40 ? 2 : matches >= 2 ? 1 : 0;
+        const matches = Object.keys(PRIORITIZATION_EXPECTED_ORDER).reduce((sum, key) => (
+          sum + (priorities[key] === PRIORITIZATION_EXPECTED_ORDER[key] ? 1 : 0)
+        ), 0);
+        const points = matches >= PRIORITIZATION_SCORING.fullPointMinMatches && rationale.length >= PRIORITIZATION_SCORING.fullPointMinRationaleChars
+          ? 2
+          : matches >= PRIORITIZATION_SCORING.partialPointMinMatches ? 1 : 0;
         appState.scenarioResponses.part3 = {
           rationale,
           priorities,
