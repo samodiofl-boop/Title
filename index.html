@@ -162,6 +162,385 @@
       box-shadow: 0 10px 20px rgba(63,72,84,.2);
     }
 
+    .secondary-button,
+    .ghost-button {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .secondary-button {
+      background: #fff;
+      color: var(--navy);
+    }
+
+    .secondary-button:hover {
+      background: #f0f3fa;
+    }
+
+    .ghost-button {
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .ghost-button:hover {
+      border-color: #cfd6e3;
+      color: var(--navy);
+      background: #f8faff;
+    }
+
+    .dashboard-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .dashboard-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dashboard-head h3 {
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .status-pill {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--indigo-soft);
+      color: var(--indigo-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #e8ebf5;
+      overflow: hidden;
+      border: 1px solid #dde3ef;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      transition: width 0.35s ease;
+      background: linear-gradient(90deg, var(--coral), var(--indigo-deep));
+    }
+
+    .progress-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dashboard-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: #fafbff;
+      border: 1px solid #e6eaf3;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .stat-card label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .stat-card strong {
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    .dashboard-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .dashboard-actions .cta-button {
+      padding: 13px 24px;
+      font-size: 14px;
+    }
+
+    .badge-wall {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge-chip {
+      border: 1px solid #ffd3c2;
+      background: #fff8f4;
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .journey-progress-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .journey-progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--navy);
+    }
+
+    .assessment-card {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f8faff;
+      overflow: hidden;
+    }
+
+    .assessment-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid #dde3ef;
+      background: #edf2ff;
+      color: var(--navy);
+    }
+
+    .assessment-header h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .assessment-body {
+      padding: 16px;
+    }
+
+    .quiz-question {
+      border: 1px solid #e2e7f2;
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .quiz-question h4 {
+      text-transform: none;
+      margin: 0 0 8px;
+      letter-spacing: 0;
+      font-size: 15px;
+    }
+
+    .quiz-option {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .quiz-option input {
+      margin-right: 8px;
+    }
+
+    .quiz-feedback {
+      font-size: 13px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #dbe3f7;
+      background: #f8fbff;
+    }
+
+    .quiz-feedback.correct {
+      border-color: #b8eccf;
+      background: #ecfff3;
+    }
+
+    .quiz-feedback.incorrect {
+      border-color: #ffd6cc;
+      background: #fff4f1;
+    }
+
+    .assessment-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .mini-button {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .mini-button.ghost {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid var(--line);
+    }
+
+    .status-text {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .scenario-card {
+      border: 1px solid #dfe6f5;
+      border-radius: 12px;
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .scenario-card h4 {
+      margin: 0 0 8px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 16px;
+    }
+
+    .scenario-card textarea {
+      width: 100%;
+      min-height: 92px;
+      border-radius: 8px;
+      border: 1px solid #d5dbe8;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      margin: 8px 0 12px;
+      resize: vertical;
+    }
+
+    .scenario-checklist {
+      margin: 6px 0 10px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .scenario-checklist label {
+      font-size: 14px;
+    }
+
+    .scenario-rank-grid {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .scenario-rank-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 80px;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .scenario-rank-item select {
+      border-radius: 8px;
+      border: 1px solid #d5dbe8;
+      padding: 8px;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .model-answer {
+      margin-top: 8px;
+      background: #f8fbff;
+      border: 1px solid #dfe6f7;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .audio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .audio-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    #toast-container {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 1000;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast {
+      background: #2f3b49;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .completed-pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f6940;
+      border: 1px solid #aee5c6;
+      background: #ecfff3;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
     .content-layout {
       display: grid;
       grid-template-columns: 250px minmax(0, 1fr);
@@ -538,6 +917,14 @@
       .nav-button {
         width: 100%;
       }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-rank-item {
+        grid-template-columns: 1fr;
+      }
     }
 
     mark {
@@ -560,6 +947,41 @@
           <p class="intro-text">
             This training guide is your single source of truth. It covers everything you need to know: your role, pricing, scripts, processes, contracts, and compliance guardrails. Each section is designed for clarity and action — no fluff, just what works.
           </p>
+
+          <div class="dashboard-card">
+            <div class="dashboard-head">
+              <h3>Training Dashboard</h3>
+              <span id="dashboard-status-pill" class="status-pill">Not started</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="welcome-progress-fill"></div>
+            </div>
+            <div class="progress-meta" id="welcome-progress-text">0% complete</div>
+            <div class="dashboard-grid">
+              <div class="stat-card">
+                <label>Sections Completed</label>
+                <strong id="stat-sections">0 / 16</strong>
+              </div>
+              <div class="stat-card">
+                <label>Assessments Completed</label>
+                <strong id="stat-assessments">0 / 9</strong>
+              </div>
+              <div class="stat-card">
+                <label>Score</label>
+                <strong id="stat-score">0 / 20</strong>
+              </div>
+              <div class="stat-card">
+                <label>Badges</label>
+                <strong id="stat-badges">0</strong>
+              </div>
+            </div>
+            <div class="dashboard-actions">
+              <button class="cta-button" id="start-btn" onclick="startTraining(false)">Start Training</button>
+              <button class="secondary-button" id="resume-btn" onclick="resumeTraining()">Resume</button>
+              <button class="ghost-button" onclick="resetProgress()">Reset Progress</button>
+            </div>
+            <div class="badge-wall" id="badge-wall"></div>
+          </div>
 
           <div class="toc-list">
             <div class="toc-item">
@@ -618,9 +1040,16 @@
               <div class="num">14</div>
               <div class="title">30 / 60 / 90 Ramp Plan</div>
             </div>
+            <div class="toc-item">
+              <div class="num">15</div>
+              <div class="title">Scenario Lab</div>
+            </div>
+            <div class="toc-item">
+              <div class="num">16</div>
+              <div class="title">Final Certification</div>
+            </div>
           </div>
 
-          <button class="cta-button" onclick="startTraining()">Get Started</button>
         </div>
       </div>
 
@@ -633,6 +1062,15 @@
           </aside>
 
           <div>
+            <div class="journey-progress-card">
+              <div class="journey-progress-head">
+                <strong>Overall Progress</strong>
+                <span id="journey-progress-text">0% complete</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="journey-progress-fill"></div>
+              </div>
+            </div>
             <div class="content-page" id="content-container"></div>
             <div class="nav-footer">
               <button class="nav-button" id="prev-btn" onclick="previousPage()">← Back</button>
@@ -644,6 +1082,7 @@
       </div>
     </div>
   </main>
+  <div id="toast-container" aria-live="polite"></div>
 
   <footer>
     <div class="wrap">Beycome Corp. — Internal Use Only · Title Sales department reference · Last updated: May 2026 (Sam team)</div>
@@ -1742,40 +2181,825 @@
       }
     ];
 
+    sections.push(
+      {
+        id: 15,
+        title: "Scenario Lab",
+        content: `
+          <div class="content-page-header">
+            <div class="num">15</div>
+            <h2>Scenario Lab</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Practice real call moments, then self-evaluate using the criteria below. This module is local-only and designed for coaching readiness.</p>
+            <div class="callout info">
+              <label>How this works</label>
+              For each scenario, draft your response, optionally record a local voice note if your browser supports it, complete the rubric checklist, and submit. Your responses and scores are saved in this browser so you can resume.
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 16,
+        title: "Final Certification",
+        content: `
+          <div class="content-page-header">
+            <div class="num">16</div>
+            <h2>Final Certification</h2>
+          </div>
+          <div class="content-body">
+            <p class="lead">Complete the final review and confirm readiness. This page summarizes your training progress, score, completed modules, and earned badges.</p>
+            <div id="certification-summary-anchor"></div>
+          </div>
+        `
+      }
+    );
+
+    const STORAGE_KEY = 'beycome_title_training_state_v1';
+    const QUIZ_SECTIONS = [2, 3, 4, 8, 9, 16];
+    const SCENARIO_PARTS = ['part1', 'part2', 'part3'];
+    const ASSESSMENT_SECTIONS = new Set([...QUIZ_SECTIONS, 15]);
+    const SCENARIO_CHECKLIST_SCORING = {
+      fullPointMinChecked: 4,
+      partialPointMinChecked: 2
+    };
+    const PRIORITIZATION_EXPECTED_ORDER = {
+      offerNoTitle: 1,
+      prepaidOfferHelp: 2,
+      fileReady: 3,
+      newListings: 4
+    };
+    const PRIORITIZATION_SCORING = {
+      fullPointMinMatches: 3,
+      partialPointMinMatches: 2,
+      fullPointMinRationaleChars: 40
+    };
+
+    const quizConfig = {
+      2: {
+        title: 'Knowledge Check · Systems & Tools',
+        questions: [
+          {
+            id: 's2q1',
+            prompt: 'Which system is the required channel for all calls and all SMS?',
+            options: ['Zoho Mail', 'Hubstaff', 'Zoho Voice', 'Qualia Connect'],
+            correct: 2,
+            explanation: 'Zoho Voice is the required channel for calls and SMS. The training explicitly says calls first, SMS fallback, and log every call.'
+          },
+          {
+            id: 's2q2',
+            prompt: 'Before opening a title file, where should interaction notes be documented?',
+            options: ['Personal notebook', 'Back Office notes', 'Qualia comments only', 'Hubstaff activity log'],
+            correct: 1,
+            explanation: 'Back Office notes are the system of record. If it is not in Back Office notes, it did not happen.'
+          }
+        ]
+      },
+      3: {
+        title: 'Knowledge Check · Pricing',
+        questions: [
+          {
+            id: 's3q1',
+            prompt: 'A Florida seller did not prepay and is now under contract. What settlement fee applies?',
+            options: ['$99', '$299', '$499', '$700'],
+            correct: 2,
+            explanation: 'Florida sellers who did not prepay and choose title at/after contract are at $499, paid at closing from proceeds.'
+          },
+          {
+            id: 's3q2',
+            prompt: 'What is true about Texas pricing?',
+            options: ['$99 prepay is available before contract', '$299 is paid at closing from proceeds with no prepay option', '$499 applies after contract', 'Fee is due at listing checkout'],
+            correct: 1,
+            explanation: 'Texas has no prepay option. It is always $299 at closing from proceeds.'
+          }
+        ]
+      },
+      4: {
+        title: 'Knowledge Check · End-to-End Process',
+        questions: [
+          {
+            id: 's4q1',
+            prompt: 'Which two documents are mandatory before clicking "Open File"?',
+            options: ['Executed contract + signed deed', 'Executed contract + ABA Disclosure', 'Title quote + lender approval', 'Inspection report + ABA Disclosure'],
+            correct: 1,
+            explanation: 'You must upload the fully executed contract and ABA Disclosure before opening the file.'
+          },
+          {
+            id: 's4q2',
+            prompt: 'If a deal is cancelled, what should happen first in Back Office?',
+            options: ['Release earnest money immediately', 'Mark status as Cancelled and upload Release & Cancellation', 'Reopen listing as active and wait', 'Send seller to Qualia directly'],
+            correct: 1,
+            explanation: 'The process is to mark title status as Cancelled, upload Release and Cancellation, and document the reason in notes.'
+          }
+        ]
+      },
+      8: {
+        title: 'Knowledge Check · Florida & Texas Playbooks',
+        questions: [
+          {
+            id: 's8q1',
+            prompt: 'Which contract section is the key title line in Florida offers?',
+            options: ['Paragraph 6A', 'Paragraph 9(c)', 'Paragraph 3', 'Paragraph 12'],
+            correct: 1,
+            explanation: 'Florida review focuses on Paragraph 9(c), including who pays and who designates title company.'
+          },
+          {
+            id: 's8q2',
+            prompt: 'Which statement best reflects the Texas playbook?',
+            options: ['Seller cannot change the title company once buyer agent prefills it', 'Texas requires prepay before listing', 'Seller can change title company in Paragraph 6A before execution', 'Texas only allows in-person closing'],
+            correct: 2,
+            explanation: 'In Texas, buyer agents often prefill Paragraph 6A, but sellers can still change title company before execution.'
+          }
+        ]
+      },
+      9: {
+        title: 'Knowledge Check · Objections & Rebuttals',
+        questions: [
+          {
+            id: 's9q1',
+            prompt: 'Best response style to objections is to:',
+            options: ['Win the argument quickly', 'Push urgency until they commit', 'Acknowledge, inform, and offer value', 'Send only pricing tables'],
+            correct: 2,
+            explanation: 'The section states: never argue — acknowledge, inform, offer value.'
+          },
+          {
+            id: 's9q2',
+            prompt: 'If a seller says they already have a title company, the first consultative move is to:',
+            options: ['Ask what settlement fee they were quoted', 'Tell them to cancel immediately', 'State Beycome is always better', 'Escalate to legal'],
+            correct: 0,
+            explanation: 'Start by understanding their current quote and offering a transparent comparison.'
+          }
+        ]
+      },
+      16: {
+        title: 'Final Review · Certification Check',
+        questions: [
+          {
+            id: 's16q1',
+            prompt: 'What daily priority order is emphasized in the playbook?',
+            options: ['Follow-ups → offers → listings', 'Offers → new listings → follow-ups', 'Listings → offers → monthly tasks', 'Files ready to open → listings → offers'],
+            correct: 1,
+            explanation: 'Daily priority is offers first, then new listings, then scheduled follow-ups.'
+          },
+          {
+            id: 's16q2',
+            prompt: 'What is the right behavior if earnest money release is disputed?',
+            options: ['Advise one party and release quickly', 'Escalate to processor + Sam and avoid legal advice', 'Wait for buyer agent text confirmation', 'Handle it alone in Back Office'],
+            correct: 1,
+            explanation: 'Disputes are immediate handoffs to processing and Sam; no unilateral release or legal interpretation by sales.'
+          },
+          {
+            id: 's16q3',
+            prompt: 'Which statement is accurate about FL/TX positioning?',
+            options: ['FL always buyer chooses title', 'TX has a $99 prepay option', 'FL 9(c) and TX 6A are key contract lines for title designation', 'Texas cannot close remotely'],
+            correct: 2,
+            explanation: 'Florida Paragraph 9(c) and Texas Paragraph 6A are the key lines for title designation review.'
+          },
+          {
+            id: 's16q4',
+            prompt: 'What best describes the consultant tone expected in this role?',
+            options: ['Hard close quickly before offer', 'Consultative guide: clear, accurate, no hard sell', 'Only send templates and avoid calls', 'Avoid discussing title until contract is signed'],
+            correct: 1,
+            explanation: 'The onboarding emphasizes consultative communication, phone-first outreach, and no hard sell.'
+          }
+        ]
+      }
+    };
+
+    const badgeConfig = [
+      { id: 'first-steps', title: 'First Steps', rule: state => state.visitedSections.length >= 3 },
+      { id: 'systems-ready', title: 'Systems Ready', rule: state => (state.quizAttempts['2']?.correctCount || 0) >= 2 },
+      { id: 'pricing-pro', title: 'Pricing Pro', rule: state => {
+        const attempt = state.quizAttempts['3'];
+        return attempt && attempt.correctCount === attempt.total;
+      }},
+      { id: 'scenario-operator', title: 'Operator Mindset', rule: state => state.scenarioCompletedParts.length === 3 },
+      { id: 'certified', title: 'Certified Consultant', rule: state => !!state.quizAttempts['16'] },
+      { id: 'perfect-run', title: 'Perfect Run', rule: state => QUIZ_SECTIONS.every(sectionId => {
+        const attempt = state.quizAttempts[String(sectionId)];
+        return attempt && attempt.correctCount === attempt.total;
+      })}
+    ];
+
     let currentPage = 1;
+    let appState = loadState();
+
+    function getDefaultState() {
+      return {
+        started: false,
+        currentPage: 1,
+        visitedSections: [],
+        completedSections: [],
+        quizAttempts: {},
+        scenarioResponses: {
+          part1: { text: '', checklist: [], submitted: false, points: 0, audioPracticed: false },
+          part2: { text: '', checklist: [], submitted: false, points: 0, audioPracticed: false },
+          part3: { rationale: '', priorities: {}, submitted: false, points: 0 }
+        },
+        scenarioCompletedParts: [],
+        badges: []
+      };
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return getDefaultState();
+        const parsed = JSON.parse(raw);
+        return {
+          ...getDefaultState(),
+          ...parsed,
+          scenarioResponses: {
+            ...getDefaultState().scenarioResponses,
+            ...(parsed.scenarioResponses || {})
+          }
+        };
+      } catch {
+        return getDefaultState();
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function totalAssessmentCount() {
+      return Object.keys(quizConfig).length + SCENARIO_PARTS.length;
+    }
+
+    function completedAssessments() {
+      const quizDone = Object.keys(appState.quizAttempts).length;
+      return quizDone + appState.scenarioCompletedParts.length;
+    }
+
+    function scoreSummary() {
+      const quizScore = Object.values(appState.quizAttempts).reduce((sum, attempt) => sum + (attempt.correctCount || 0), 0);
+      const quizMax = Object.values(quizConfig).reduce((sum, quiz) => sum + quiz.questions.length, 0);
+      const scenarioScore = SCENARIO_PARTS.reduce((sum, key) => sum + (appState.scenarioResponses[key]?.points || 0), 0);
+      const scenarioMax = 6;
+      return {
+        score: quizScore + scenarioScore,
+        max: quizMax + scenarioMax
+      };
+    }
+
+    function progressSummary() {
+      const total = sections.length + totalAssessmentCount();
+      const complete = appState.visitedSections.length + completedAssessments();
+      const percent = Math.min(100, Math.round((complete / total) * 100));
+      return { total, complete, percent };
+    }
+
+    function markVisited(sectionId) {
+      if (!appState.visitedSections.includes(sectionId)) {
+        appState.visitedSections.push(sectionId);
+      }
+      if (!ASSESSMENT_SECTIONS.has(sectionId) && !appState.completedSections.includes(sectionId)) {
+        appState.completedSections.push(sectionId);
+      }
+    }
+
+    function setSectionCompletion(sectionId, completed) {
+      const has = appState.completedSections.includes(sectionId);
+      if (completed && !has) appState.completedSections.push(sectionId);
+      if (!completed && has) {
+        appState.completedSections = appState.completedSections.filter(id => id !== sectionId);
+      }
+    }
+
+    function evaluateBadges() {
+      for (const badge of badgeConfig) {
+        if (!appState.badges.includes(badge.id) && badge.rule(appState)) {
+          appState.badges.push(badge.id);
+          showToast(`🏅 Badge unlocked: ${badge.title}`);
+        }
+      }
+    }
+
+    function showToast(message) {
+      const parent = document.getElementById('toast-container');
+      if (!parent) return;
+      const node = document.createElement('div');
+      node.className = 'toast';
+      node.textContent = message;
+      parent.appendChild(node);
+      setTimeout(() => node.remove(), 2600);
+    }
+
+    function updateDashboard() {
+      evaluateBadges();
+      const progress = progressSummary();
+      const score = scoreSummary();
+      const completedAssess = completedAssessments();
+      const sectionsTotal = sections.length;
+      const completedSections = appState.completedSections.length;
+      const statusPill = document.getElementById('dashboard-status-pill');
+      const statusText = progress.percent === 100 ? 'Complete' : appState.started ? 'In progress' : 'Not started';
+
+      document.getElementById('welcome-progress-fill').style.width = `${progress.percent}%`;
+      document.getElementById('welcome-progress-text').textContent = `${progress.percent}% complete · ${progress.complete}/${progress.total} milestones`;
+      document.getElementById('journey-progress-fill').style.width = `${progress.percent}%`;
+      document.getElementById('journey-progress-text').textContent = `${progress.percent}% complete`;
+
+      document.getElementById('stat-sections').textContent = `${completedSections} / ${sectionsTotal}`;
+      document.getElementById('stat-assessments').textContent = `${completedAssess} / ${totalAssessmentCount()}`;
+      document.getElementById('stat-score').textContent = `${score.score} / ${score.max}`;
+      document.getElementById('stat-badges').textContent = appState.badges.length;
+
+      statusPill.textContent = statusText;
+      const badgeWall = document.getElementById('badge-wall');
+      badgeWall.innerHTML = appState.badges.length
+        ? appState.badges.map(id => {
+            const badge = badgeConfig.find(item => item.id === id);
+            return `<span class="badge-chip">${badge?.title || id}</span>`;
+          }).join('')
+        : '<span class="progress-meta">No badges unlocked yet. Complete sections and assessments to earn them.</span>';
+
+      const resumeBtn = document.getElementById('resume-btn');
+      const startBtn = document.getElementById('start-btn');
+      resumeBtn.style.display = appState.started ? 'inline-block' : 'none';
+      startBtn.textContent = appState.started ? 'Restart at Section 1' : 'Start Training';
+    }
 
     function renderJumpNav() {
       const nav = document.getElementById('jump-nav-list');
       if (!nav) return;
-
       nav.innerHTML = sections.map((section, index) => {
         const page = index + 1;
-        return `<button class="jump-link${page === currentPage ? ' active' : ''}" onclick="displayPage(${page})">${page}. ${section.title}</button>`;
+        const visited = appState.visitedSections.includes(section.id);
+        const done = appState.completedSections.includes(section.id);
+        const marker = done ? ' ✓' : visited ? ' •' : '';
+        return `<button class="jump-link${page === currentPage ? ' active' : ''}" onclick="displayPage(${page})">${page}. ${section.title}${marker}</button>`;
       }).join('');
     }
 
-    function startTraining() {
+    function startTraining(resume = false) {
       document.getElementById('welcome-view').classList.remove('active');
       document.getElementById('content-view').classList.add('active');
-      renderJumpNav();
-      displayPage(1);
+      appState.started = true;
+      const page = resume ? (appState.currentPage || 1) : 1;
+      saveState();
+      displayPage(page);
+    }
+
+    function resumeTraining() {
+      startTraining(true);
     }
 
     function displayPage(pageNum) {
       if (pageNum < 1 || pageNum > sections.length) return;
 
       currentPage = pageNum;
+      appState.currentPage = pageNum;
       const section = sections[pageNum - 1];
 
+      markVisited(section.id);
       document.getElementById('content-container').innerHTML = section.content;
       document.getElementById('current-page').textContent = pageNum;
       document.getElementById('total-pages').textContent = sections.length;
-      renderJumpNav();
 
       document.getElementById('prev-btn').disabled = pageNum === 1;
       document.getElementById('next-btn').disabled = pageNum === sections.length;
 
+      renderAssessmentsForSection(section.id);
+      updateDashboard();
+      renderJumpNav();
+      saveState();
       window.scrollTo(0, 0);
+    }
+
+    function renderAssessmentsForSection(sectionId) {
+      const container = document.getElementById('content-container');
+      if (!container) return;
+      let slot = document.getElementById('assessment-slot');
+      if (!slot) {
+        slot = document.createElement('div');
+        slot.id = 'assessment-slot';
+        container.appendChild(slot);
+      }
+      slot.innerHTML = '';
+
+      if (sectionId === 15) {
+        renderScenarioLab(slot);
+      }
+      if (sectionId === 16) {
+        renderCertificationSummary(slot);
+      }
+      if (quizConfig[sectionId]) {
+        renderQuiz(sectionId, slot);
+      }
+    }
+
+    function renderQuiz(sectionId, target) {
+      const quiz = quizConfig[sectionId];
+      const prior = appState.quizAttempts[String(sectionId)];
+      const wrapper = document.createElement('section');
+      wrapper.className = 'assessment-card';
+      wrapper.innerHTML = `
+        <div class="assessment-header">
+          <h3>${quiz.title}${prior ? '<span class="completed-pill">Completed</span>' : ''}</h3>
+          <p>Answer all questions to complete this checkpoint.</p>
+        </div>
+        <div class="assessment-body" id="quiz-body-${sectionId}">
+          ${quiz.questions.map((q, qIndex) => {
+            const saved = prior?.answers?.[q.id];
+            const feedback = prior?.feedback?.[q.id];
+            return `
+              <div class="quiz-question">
+                <h4>${qIndex + 1}. ${q.prompt}</h4>
+                ${q.options.map((option, optionIndex) => `
+                  <label class="quiz-option">
+                    <input type="radio" name="quiz-${sectionId}-${q.id}" value="${optionIndex}" ${saved === optionIndex ? 'checked' : ''}>
+                    ${option}
+                  </label>
+                `).join('')}
+                ${feedback ? `<div class="quiz-feedback ${feedback.correct ? 'correct' : 'incorrect'}">${feedback.correct ? 'Correct.' : 'Not quite.'} ${q.explanation}</div>` : ''}
+              </div>
+            `;
+          }).join('')}
+          <div class="assessment-actions">
+            <button class="mini-button" onclick="submitQuiz(${sectionId})">Submit Answers</button>
+            <button class="mini-button ghost" onclick="resetQuiz(${sectionId})">Retake Quiz</button>
+            <span class="status-text" id="quiz-status-${sectionId}">${prior ? `Score: ${prior.correctCount}/${prior.total}` : 'Not submitted yet'}</span>
+          </div>
+        </div>
+      `;
+      target.appendChild(wrapper);
+    }
+
+    function submitQuiz(sectionId) {
+      const quiz = quizConfig[sectionId];
+      const answers = {};
+      const feedback = {};
+      let correctCount = 0;
+
+      for (const question of quiz.questions) {
+        const selected = document.querySelector(`input[name="quiz-${sectionId}-${question.id}"]:checked`);
+        if (!selected) {
+          document.getElementById(`quiz-status-${sectionId}`).textContent = 'Please answer all questions before submitting.';
+          return;
+        }
+        const value = Number(selected.value);
+        answers[question.id] = value;
+        const isCorrect = value === question.correct;
+        feedback[question.id] = { correct: isCorrect };
+        if (isCorrect) correctCount += 1;
+      }
+
+      appState.quizAttempts[String(sectionId)] = {
+        answers,
+        feedback,
+        correctCount,
+        total: quiz.questions.length
+      };
+      setSectionCompletion(sectionId, true);
+      evaluateBadges();
+      saveState();
+      renderAssessmentsForSection(sectionId);
+      updateDashboard();
+      renderJumpNav();
+    }
+
+    function resetQuiz(sectionId) {
+      delete appState.quizAttempts[String(sectionId)];
+      setSectionCompletion(sectionId, false);
+      saveState();
+      renderAssessmentsForSection(sectionId);
+      updateDashboard();
+      renderJumpNav();
+    }
+
+    function renderScenarioLab(target) {
+      const part1 = appState.scenarioResponses.part1;
+      const part2 = appState.scenarioResponses.part2;
+      const part3 = appState.scenarioResponses.part3;
+      const checklist = {
+        part1: [
+          'I introduced myself clearly as Beycome Title support.',
+          'I built quick rapport and kept a professional tone.',
+          'I brought up title naturally (not as a hard sell).',
+          'I offered to send a quote and next steps.',
+          'I closed with a clear, low-pressure action.'
+        ],
+        part2: [
+          'I congratulated the seller first.',
+          'I explained title urgency around offer timing.',
+          'I offered practical support (review terms / title clause).',
+          'I clearly positioned Beycome Title benefits.',
+          'I asked for a decision-oriented next step.'
+        ]
+      };
+
+      const rankingItems = [
+        { key: 'offerNoTitle', label: 'Seller just got an offer (no title yet)' },
+        { key: 'newListings', label: 'Two new listings (no title yet)' },
+        { key: 'prepaidOfferHelp', label: 'Prepaid client asking for offer review help' },
+        { key: 'fileReady', label: 'One file ready to be opened' }
+      ];
+
+      target.insertAdjacentHTML('beforeend', `
+        <section class="assessment-card">
+          <div class="assessment-header">
+            <h3>Scenario Lab Assessment</h3>
+            <p>Submit all 3 parts to complete this module.</p>
+          </div>
+          <div class="assessment-body">
+            <div class="scenario-card">
+              <h4>Part 1 — New Listing Call (No Title) ${part1.submitted ? '<span class="completed-pill">Completed</span>' : ''}</h4>
+              <p>You’re calling a seller who just listed with Beycome and has not selected a title company. Record or write a 1–2 minute response that introduces yourself, builds rapport, brings up title naturally, and offers a quote without a hard sell.</p>
+              <div class="audio-controls" id="audio-controls-part1">
+                <button class="mini-button ghost" id="audio-start-part1" type="button">Start Recording</button>
+                <button class="mini-button ghost" id="audio-stop-part1" type="button" disabled>Stop</button>
+                <span class="audio-note" id="audio-status-part1">Optional voice practice (saved locally in this session).</span>
+              </div>
+              <audio id="audio-playback-part1" controls style="display:none; width:100%; margin-bottom:8px;"></audio>
+              <textarea id="scenario-text-part1" placeholder="Write your call response or key talking points...">${escapeHtml(part1.text)}</textarea>
+              <div class="scenario-checklist">
+                ${checklist.part1.map((item, idx) => `
+                  <label><input type="checkbox" data-scenario-part="part1" value="${idx}" ${part1.checklist.includes(idx) ? 'checked' : ''}> ${item}</label>
+                `).join('')}
+              </div>
+              <div class="assessment-actions">
+                <button class="mini-button" onclick="submitScenarioPart('part1')">Submit Part 1</button>
+                <button class="mini-button ghost" onclick="toggleModelAnswer('model-part1')">Show / Hide Model Answer</button>
+                <span class="status-text" id="scenario-status-part1">${part1.submitted ? `Submitted · ${part1.points}/2 points` : 'Not submitted yet'}</span>
+              </div>
+              <div class="model-answer" id="model-part1" style="display:none;">
+                <strong>Model answer guide:</strong> Start with a warm intro, acknowledge their listing launch, explain that you’re their title point of contact, briefly frame why choosing title early prevents offer-time scrambling, offer to send a simple quote, and close with a low-pressure next step.
+              </div>
+            </div>
+
+            <div class="scenario-card">
+              <h4>Part 2 — Offer Received (Conversion Moment) ${part2.submitted ? '<span class="completed-pill">Completed</span>' : ''}</h4>
+              <p>The same seller now received an offer and still has not selected title. Record or write a 1–2 minute response that congratulates them, creates urgency, positions Beycome Title clearly, and moves toward a decision.</p>
+              <div class="audio-controls" id="audio-controls-part2">
+                <button class="mini-button ghost" id="audio-start-part2" type="button">Start Recording</button>
+                <button class="mini-button ghost" id="audio-stop-part2" type="button" disabled>Stop</button>
+                <span class="audio-note" id="audio-status-part2">Optional voice practice (saved locally in this session).</span>
+              </div>
+              <audio id="audio-playback-part2" controls style="display:none; width:100%; margin-bottom:8px;"></audio>
+              <textarea id="scenario-text-part2" placeholder="Write your offer-stage conversion call response...">${escapeHtml(part2.text)}</textarea>
+              <div class="scenario-checklist">
+                ${checklist.part2.map((item, idx) => `
+                  <label><input type="checkbox" data-scenario-part="part2" value="${idx}" ${part2.checklist.includes(idx) ? 'checked' : ''}> ${item}</label>
+                `).join('')}
+              </div>
+              <div class="assessment-actions">
+                <button class="mini-button" onclick="submitScenarioPart('part2')">Submit Part 2</button>
+                <button class="mini-button ghost" onclick="toggleModelAnswer('model-part2')">Show / Hide Model Answer</button>
+                <span class="status-text" id="scenario-status-part2">${part2.submitted ? `Submitted · ${part2.points}/2 points` : 'Not submitted yet'}</span>
+              </div>
+              <div class="model-answer" id="model-part2" style="display:none;">
+                <strong>Model answer guide:</strong> Congratulate first, then calmly emphasize this is the decision window for title. Explain pricing and timeline impact in plain language, offer to review the title line in the contract live, and ask for a clear commitment step before signatures.
+              </div>
+            </div>
+
+            <div class="scenario-card">
+              <h4>Part 3 — Prioritization ${part3.submitted ? '<span class="completed-pill">Completed</span>' : ''}</h4>
+              <p>Rank your priorities and explain your reasoning.</p>
+              <div class="scenario-rank-grid">
+                ${rankingItems.map(item => `
+                  <div class="scenario-rank-item">
+                    <span>${item.label}</span>
+                    <select id="priority-${item.key}">
+                      <option value="">Rank</option>
+                      <option value="1" ${String(part3.priorities[item.key] || '') === '1' ? 'selected' : ''}>1</option>
+                      <option value="2" ${String(part3.priorities[item.key] || '') === '2' ? 'selected' : ''}>2</option>
+                      <option value="3" ${String(part3.priorities[item.key] || '') === '3' ? 'selected' : ''}>3</option>
+                      <option value="4" ${String(part3.priorities[item.key] || '') === '4' ? 'selected' : ''}>4</option>
+                    </select>
+                  </div>
+                `).join('')}
+              </div>
+              <textarea id="scenario-text-part3" placeholder="Explain why you ordered the work this way...">${escapeHtml(part3.rationale)}</textarea>
+              <div class="assessment-actions">
+                <button class="mini-button" onclick="submitScenarioPart('part3')">Submit Part 3</button>
+                <button class="mini-button ghost" onclick="toggleModelAnswer('model-part3')">Show / Hide Model Answer</button>
+                <span class="status-text" id="scenario-status-part3">${part3.submitted ? `Submitted · ${part3.points}/2 points` : 'Not submitted yet'}</span>
+              </div>
+              <div class="model-answer" id="model-part3" style="display:none;">
+                <strong>Model answer guide:</strong> A strong priority order is usually (1) seller with active offer/no title, (2) prepaid client requesting offer review, (3) file ready to open, (4) new listings. Reasoning: protect time-sensitive conversion and active-deal moments first, then operational handoff, then early-stage outreach.
+              </div>
+            </div>
+          </div>
+        </section>
+      `);
+
+      bindScenarioInputs();
+      setupAudioRecorder('part1');
+      setupAudioRecorder('part2');
+      const allSubmitted = SCENARIO_PARTS.every(part => appState.scenarioResponses[part].submitted);
+      setSectionCompletion(15, allSubmitted);
+      saveState();
+    }
+
+    function bindScenarioInputs() {
+      ['part1', 'part2'].forEach(part => {
+        const textarea = document.getElementById(`scenario-text-${part}`);
+        if (textarea) {
+          textarea.addEventListener('input', event => {
+            appState.scenarioResponses[part].text = event.target.value;
+            saveState();
+          });
+        }
+        document.querySelectorAll(`input[data-scenario-part="${part}"]`).forEach(node => {
+          node.addEventListener('change', () => {
+            const checked = Array.from(document.querySelectorAll(`input[data-scenario-part="${part}"]:checked`)).map(item => Number(item.value));
+            appState.scenarioResponses[part].checklist = checked;
+            saveState();
+          });
+        });
+      });
+
+      const rationale = document.getElementById('scenario-text-part3');
+      if (rationale) {
+        rationale.addEventListener('input', event => {
+          appState.scenarioResponses.part3.rationale = event.target.value;
+          saveState();
+        });
+      }
+      ['offerNoTitle', 'newListings', 'prepaidOfferHelp', 'fileReady'].forEach(key => {
+        const select = document.getElementById(`priority-${key}`);
+        if (select) {
+          select.addEventListener('change', event => {
+            appState.scenarioResponses.part3.priorities[key] = event.target.value ? Number(event.target.value) : '';
+            saveState();
+          });
+        }
+      });
+    }
+
+    function setupAudioRecorder(partKey) {
+      const startBtn = document.getElementById(`audio-start-${partKey}`);
+      const stopBtn = document.getElementById(`audio-stop-${partKey}`);
+      const status = document.getElementById(`audio-status-${partKey}`);
+      const audio = document.getElementById(`audio-playback-${partKey}`);
+      if (!startBtn || !stopBtn || !status || !audio) return;
+
+      if (!navigator.mediaDevices || typeof MediaRecorder === 'undefined') {
+        startBtn.disabled = true;
+        stopBtn.disabled = true;
+        status.textContent = 'Audio recording is not supported in this browser. You can still complete this scenario with text.';
+        return;
+      }
+
+      let mediaRecorder = null;
+      let chunks = [];
+      let stream = null;
+      const mimeType = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg']
+        .find(type => MediaRecorder.isTypeSupported(type));
+
+      startBtn.onclick = async () => {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+          chunks = [];
+          mediaRecorder.ondataavailable = event => chunks.push(event.data);
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { type: mimeType || 'audio/webm' });
+            const url = URL.createObjectURL(blob);
+            audio.src = url;
+            audio.style.display = 'block';
+            appState.scenarioResponses[partKey].audioPracticed = true;
+            saveState();
+            status.textContent = 'Recording saved locally in this session.';
+          };
+          mediaRecorder.start();
+          startBtn.disabled = true;
+          stopBtn.disabled = false;
+          status.textContent = 'Recording... click Stop when finished.';
+        } catch {
+          status.textContent = 'Microphone permission denied or unavailable. Continue with written practice.';
+        }
+      };
+
+      stopBtn.onclick = () => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+          if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+          }
+          startBtn.disabled = false;
+          stopBtn.disabled = true;
+        }
+      };
+    }
+
+    function submitScenarioPart(partKey) {
+      if (partKey === 'part1' || partKey === 'part2') {
+        const text = (document.getElementById(`scenario-text-${partKey}`)?.value || '').trim();
+        const checklist = Array.from(document.querySelectorAll(`input[data-scenario-part="${partKey}"]:checked`)).map(item => Number(item.value));
+        if (!text) {
+          document.getElementById(`scenario-status-${partKey}`).textContent = 'Please add your response before submitting.';
+          return;
+        }
+        const points = checklist.length >= SCENARIO_CHECKLIST_SCORING.fullPointMinChecked
+          ? 2
+          : checklist.length >= SCENARIO_CHECKLIST_SCORING.partialPointMinChecked ? 1 : 0;
+        appState.scenarioResponses[partKey] = {
+          ...appState.scenarioResponses[partKey],
+          text,
+          checklist,
+          submitted: true,
+          points
+        };
+      }
+
+      if (partKey === 'part3') {
+        const priorities = {
+          offerNoTitle: Number(document.getElementById('priority-offerNoTitle')?.value || 0),
+          newListings: Number(document.getElementById('priority-newListings')?.value || 0),
+          prepaidOfferHelp: Number(document.getElementById('priority-prepaidOfferHelp')?.value || 0),
+          fileReady: Number(document.getElementById('priority-fileReady')?.value || 0)
+        };
+        const ranks = Object.values(priorities);
+        const rationale = (document.getElementById('scenario-text-part3')?.value || '').trim();
+        const uniqueRanks = new Set(ranks);
+        const validRanks = ranks.every(value => value >= 1 && value <= 4) && uniqueRanks.size === 4;
+        if (!validRanks || !rationale) {
+          document.getElementById('scenario-status-part3').textContent = 'Please rank all items uniquely and add your reasoning.';
+          return;
+        }
+        const matches = Object.keys(PRIORITIZATION_EXPECTED_ORDER).reduce((sum, key) => (
+          sum + (priorities[key] === PRIORITIZATION_EXPECTED_ORDER[key] ? 1 : 0)
+        ), 0);
+        const points = matches >= PRIORITIZATION_SCORING.fullPointMinMatches && rationale.length >= PRIORITIZATION_SCORING.fullPointMinRationaleChars
+          ? 2
+          : matches >= PRIORITIZATION_SCORING.partialPointMinMatches ? 1 : 0;
+        appState.scenarioResponses.part3 = {
+          rationale,
+          priorities,
+          submitted: true,
+          points
+        };
+      }
+
+      if (!appState.scenarioCompletedParts.includes(partKey)) {
+        appState.scenarioCompletedParts.push(partKey);
+      }
+
+      const allSubmitted = SCENARIO_PARTS.every(part => appState.scenarioResponses[part].submitted);
+      setSectionCompletion(15, allSubmitted);
+      evaluateBadges();
+      saveState();
+      renderAssessmentsForSection(15);
+      updateDashboard();
+      renderJumpNav();
+    }
+
+    function toggleModelAnswer(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function renderCertificationSummary(target) {
+      const score = scoreSummary();
+      const progress = progressSummary();
+      const assessmentsDone = completedAssessments();
+      const ready = appState.completedSections.length >= sections.length && assessmentsDone >= totalAssessmentCount();
+      const percentScore = Math.round((score.score / Math.max(1, score.max)) * 100);
+      const wrapper = document.createElement('section');
+      wrapper.className = 'assessment-card';
+      wrapper.innerHTML = `
+        <div class="assessment-header">
+          <h3>Certification Results Snapshot</h3>
+          <p>${ready ? 'All sections and assessments complete.' : 'Complete remaining milestones to certify.'}</p>
+        </div>
+        <div class="assessment-body">
+          <div class="dashboard-grid">
+            <div class="stat-card"><label>Journey Completion</label><strong>${progress.percent}%</strong></div>
+            <div class="stat-card"><label>Score</label><strong>${score.score} / ${score.max} (${percentScore}%)</strong></div>
+            <div class="stat-card"><label>Assessments</label><strong>${assessmentsDone} / ${totalAssessmentCount()}</strong></div>
+            <div class="stat-card"><label>Badges</label><strong>${appState.badges.length}</strong></div>
+          </div>
+          <div class="assessment-actions">
+            <button class="mini-button ghost" onclick="window.print()">Print Certification Summary</button>
+            <span class="status-text">${ready ? 'Status: Certification-ready.' : 'Status: In progress.'}</span>
+          </div>
+        </div>
+      `;
+      target.appendChild(wrapper);
+    }
+
+    function resetProgress() {
+      const confirmed = window.confirm('Reset all progress, quiz answers, scenario responses, and badges?');
+      if (!confirmed) return;
+      appState = getDefaultState();
+      currentPage = 1;
+      localStorage.removeItem(STORAGE_KEY);
+      updateDashboard();
+      renderJumpNav();
+      showToast('Progress reset.');
     }
 
     function nextPage() {
@@ -1789,6 +3013,9 @@
         displayPage(currentPage - 1);
       }
     }
+
+    updateDashboard();
+    renderJumpNav();
   </script>
 </body>
 </html>
