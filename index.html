@@ -933,9 +933,35 @@
       padding: 0 2px;
       border-radius: 3px;
     }
+    /* ── Header ── */
+    header { background: #fff; border-bottom: 1px solid #e2e5ea; padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(26,43,74,.06); }
+    .header-top { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; max-width: 1200px; margin: 0 auto; }
+    .header-logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 18px; color: var(--navy, #1a2b4a); cursor: pointer; text-decoration: none; }
+    .header-logo span { font-size: 13px; font-weight: 600; color: #6c7480; }
+    .header-stats { display: flex; gap: 24px; align-items: center; }
+    .hdr-stat { text-align: center; }
+    .hdr-stat-val { font-size: 18px; font-weight: 800; color: var(--navy, #1a2b4a); display: block; }
+    .hdr-stat-label { font-size: 11px; color: #6c7480; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .hdr-progress-wrap { background: #eef0f5; height: 4px; }
+    .hdr-progress-bar { height: 4px; background: linear-gradient(90deg, var(--coral, #e8732a), var(--navy, #1a2b4a)); transition: width 0.4s ease; width: 0%; }
+    @media (max-width: 600px) { .header-stats { display: none; } }
   </style>
 </head>
 <body>
+  <header>
+    <div class="header-top">
+      <div class="header-logo" onclick="goHome()">
+        <img src="beycome-logo.png" alt="beycome" style="height:32px;width:auto;display:block;">
+        <span>Title Sales Training</span>
+      </div>
+      <div class="header-stats">
+        <div class="hdr-stat"><span class="hdr-stat-val" id="hdr-stat-sections">0 / 16</span><span class="hdr-stat-label">Sections</span></div>
+        <div class="hdr-stat"><span class="hdr-stat-val" id="hdr-stat-score">—</span><span class="hdr-stat-label">Quiz Score</span></div>
+        <div class="hdr-stat"><span class="hdr-stat-val" id="hdr-stat-badges">0</span><span class="hdr-stat-label">Badges</span></div>
+      </div>
+    </div>
+    <div class="hdr-progress-wrap"><div class="hdr-progress-bar" id="hdr-progress-bar"></div></div>
+  </header>
   <main>
     <div class="wrap">
       <!-- Welcome Page -->
@@ -3085,6 +3111,16 @@
       document.getElementById('stat-score').textContent = `${score.score} / ${score.max}`;
       document.getElementById('stat-badges').textContent = appState.badges.length;
 
+      // Header stats + progress bar
+      const hdrSections = document.getElementById('hdr-stat-sections');
+      const hdrScore = document.getElementById('hdr-stat-score');
+      const hdrBadges = document.getElementById('hdr-stat-badges');
+      const hdrBar = document.getElementById('hdr-progress-bar');
+      if (hdrSections) hdrSections.textContent = `${completedSections} / ${sectionsTotal}`;
+      if (hdrScore) hdrScore.textContent = score.max > 0 ? `${score.score}/${score.max}` : '—';
+      if (hdrBadges) hdrBadges.textContent = appState.badges.length;
+      if (hdrBar) hdrBar.style.width = `${progress.percent}%`;
+
       statusPill.textContent = statusText;
       const badgeWall = document.getElementById('badge-wall');
       badgeWall.innerHTML = appState.badges.length
@@ -3136,6 +3172,13 @@
         btn.style.opacity = '0.4';
         btn.style.pointerEvents = 'none';
       }
+    }
+
+    function goHome() {
+      document.getElementById('welcome-view').classList.add('active');
+      document.getElementById('content-view').classList.remove('active');
+      const qrBtn = document.getElementById('quick-ref-btn');
+      if (qrBtn) qrBtn.style.display = 'none';
     }
 
     function startTraining(resume = false) {
