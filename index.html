@@ -3410,8 +3410,19 @@
       renderAssessmentsForSection(sectionId);
       updateDashboard();
       renderJumpNav();
-      // Re-render displayPage to update next button state
-      displayPage(currentPage);
+      // Update next button state without re-rendering or scrolling to top
+      (function () {
+        const _sec = sections[currentPage - 1];
+        const _btn = document.getElementById('next-btn');
+        if (!_btn || !_sec) return;
+        if (currentPage === sections.length) {
+          _btn.disabled = true; _btn.removeAttribute('title');
+        } else if (QUIZ_SECTIONS.includes(_sec.id) && !isQuizPassed(_sec.id)) {
+          _btn.disabled = true; _btn.title = 'Pass this section\'s quiz to continue.';
+        } else {
+          _btn.disabled = false; _btn.removeAttribute('title');
+        }
+      })();
     }
 
     function resetQuiz(sectionId) {
@@ -3422,7 +3433,19 @@
       renderAssessmentsForSection(sectionId);
       updateDashboard();
       renderJumpNav();
-      displayPage(currentPage);
+      // Update next button state without re-rendering or scrolling to top
+      (function () {
+        const _sec = sections[currentPage - 1];
+        const _btn = document.getElementById('next-btn');
+        if (!_btn || !_sec) return;
+        if (currentPage === sections.length) {
+          _btn.disabled = true; _btn.removeAttribute('title');
+        } else if (QUIZ_SECTIONS.includes(_sec.id) && !isQuizPassed(_sec.id)) {
+          _btn.disabled = true; _btn.title = 'Pass this section\'s quiz to continue.';
+        } else {
+          _btn.disabled = false; _btn.removeAttribute('title');
+        }
+      })();
     }
 
     function renderScenarioLab(target) {
