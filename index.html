@@ -975,8 +975,15 @@
                 <strong id="stat-badges">0</strong>
               </div>
             </div>
+            <div class="name-entry" style="margin-bottom:24px;">
+              <label for="trainee-name" style="display:block;font-weight:700;margin-bottom:8px;color:var(--navy,#1a2332);font-size:15px;">Enter your full name to begin</label>
+              <input type="text" id="trainee-name" placeholder="e.g. Alvaro Martinez"
+                oninput="onNameInput(this.value)"
+                style="width:100%;max-width:360px;padding:12px 16px;border:2px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;transition:border-color .2s;font-family:inherit;display:block;margin:0 auto;">
+              <p id="name-error" style="color:#e53e3e;font-size:13px;margin:6px 0 0;display:none;">Please enter your full name to continue.</p>
+            </div>
             <div class="dashboard-actions">
-              <button class="cta-button" id="start-btn" onclick="startTraining(false)">Start Training</button>
+              <button class="cta-button" id="start-btn" onclick="startTraining(false)" style="opacity:0.4;pointer-events:none;">Start Training</button>
               <button class="secondary-button" id="resume-btn" onclick="resumeTraining()">Resume</button>
               <button class="ghost-button" onclick="resetProgress()">Reset Progress</button>
             </div>
@@ -1058,6 +1065,11 @@
         <div class="content-layout">
           <aside class="jump-nav" aria-label="Section navigation">
             <div class="jump-nav-label">Jump To Section</div>
+            <div style="padding:0 0 10px 0;">
+              <input id="section-search" type="text" placeholder="🔍 Search sections..."
+                oninput="filterJumpNav(this.value)"
+                style="width:100%;padding:8px 10px;border-radius:6px;border:1px solid #ddd;font-size:13px;box-sizing:border-box;">
+            </div>
             <div class="jump-nav-list" id="jump-nav-list"></div>
           </aside>
 
@@ -1083,6 +1095,44 @@
     </div>
   </main>
   <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Feature 7: Quick Reference floating button -->
+  <button id="quick-ref-btn" onclick="toggleQuickRef()"
+    style="display:none;position:fixed;bottom:24px;right:24px;z-index:9999;background:#2563eb;color:#fff;border:none;border-radius:50px;padding:12px 20px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.18);">
+    📋 Quick Ref
+  </button>
+
+  <!-- Feature 7: Quick Reference modal -->
+  <div id="quick-ref-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.5);overflow-y:auto;">
+    <div style="max-width:720px;margin:40px auto;background:#fff;border-radius:16px;padding:40px;position:relative;" id="quick-ref-content">
+      <button onclick="toggleQuickRef()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;">✕</button>
+      <button onclick="printQuickRef()" style="position:absolute;top:16px;right:56px;background:#e55a2b;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-weight:700;font-size:12px;cursor:pointer;">🖨 Print</button>
+      <h2 style="margin-top:0;color:#1e3a5f;margin-bottom:20px;">Title Sales Quick Reference</h2>
+
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:18px;">
+        <thead><tr><th style="background:#3F4854;color:#fff;text-align:left;padding:10px;font-size:13px;">Topic</th><th style="background:#3F4854;color:#fff;text-align:left;padding:10px;font-size:13px;">Key Fact</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Pricing — FL Prepaid</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">$99 locked in anytime before contract is executed</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Pricing — FL Non-Prepaid</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">$499 at closing from proceeds (if selected at/after contract)</td></tr>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Pricing — TX (always)</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">$299 at closing from proceeds · No prepay option in TX</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Daily Priority Order</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">1) Offers → 2) New listings → 3) Scheduled follow-ups → 4) Monthly/open-house</td></tr>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Required before Open File</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Executed contract + ABA Disclosure (from listing Documents tab)</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Key contract lines</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">FL = Paragraph 9(c) · TX = Paragraph 6A</td></tr>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Call approach</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Phone-first, SMS fallback, log every call in Back Office</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Objection style</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Acknowledge → inform → offer value. Never argue.</td></tr>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">If earnest money disputed</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Escalate to processor + Sam immediately. No unilateral release.</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">Systems</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Zoho Voice (calls/SMS) · Qualia (title files) · Back Office (notes/tasks)</td></tr>
+          <tr><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">FL processor</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Sarah · (786) 952-7143 · sarah@beycometitle.com</td></tr>
+          <tr style="background:#fafbff;"><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;font-weight:700;">TX processor</td><td style="padding:9px 10px;border-bottom:1px solid #e0e0e0;">Amanda · (346) 532-3077 · amanda@beycometitle.com</td></tr>
+          <tr><td style="padding:9px 10px;font-weight:700;">Questions / escalate</td><td style="padding:9px 10px;">Ask Sam · Pricing exceptions, upset sellers, compliance questions, legal interpretation</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:#fff8f4;border-left:4px solid #FF9B77;border-radius:8px;padding:12px 16px;font-size:13px;margin-top:4px;">
+        <strong>Three hard rules:</strong> 1) Call before text · 2) Never guess pricing · 3) If it's not in Back Office notes, it didn't happen.
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="wrap">Beycome Corp. — Internal Use Only · Title Sales department reference · Last updated: May 2026 (Sam team)</div>
@@ -2216,7 +2266,8 @@
     );
 
     const STORAGE_KEY = 'beycome_title_training_state_v1';
-    const QUIZ_SECTIONS = [2, 3, 4, 8, 9, 16];
+    const PASSING_SCORE = 0.80;
+    const QUIZ_SECTIONS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 16];
     const SCENARIO_PARTS = ['part1', 'part2', 'part3'];
     const ASSESSMENT_SECTIONS = new Set([...QUIZ_SECTIONS, 15]);
     const SCENARIO_CHECKLIST_SCORING = {
@@ -2238,6 +2289,7 @@
     const quizConfig = {
       2: {
         title: 'Knowledge Check · Systems & Tools',
+        displayCount: 4,
         questions: [
           {
             id: 's2q1',
@@ -2252,11 +2304,40 @@
             options: ['Personal notebook', 'Back Office notes', 'Qualia comments only', 'Hubstaff activity log'],
             correct: 1,
             explanation: 'Back Office notes are the system of record. If it is not in Back Office notes, it did not happen.'
+          },
+          {
+            id: 's2q3',
+            prompt: 'What is Qualia Connect used for in your role?',
+            options: ['Sending all client SMS messages', 'Time tracking and activity logging', 'Generating quotes and managing title orders; you hand off to it after file is opened', 'Making outbound calls to sellers'],
+            correct: 2,
+            explanation: 'Qualia Connect is used to generate quotes and manage title orders for FL & TX — used after a file is opened and handed to processing.'
+          },
+          {
+            id: 's2q4',
+            prompt: 'What does Hubstaff track?',
+            options: ['Client notes and call logs', 'Time tracking — clock in/out and activity', 'Title file status', 'Seller listing packages'],
+            correct: 1,
+            explanation: 'Hubstaff is the time tracking system. You clock in and out and it tracks your activity.'
+          },
+          {
+            id: 's2q5',
+            prompt: 'Which Back Office tab shows a seller\'s package type (Basic/Enhanced/Concierge) and prepaid status?',
+            options: ['Listings tab', 'Notes tab', 'Client account area', 'Titles page'],
+            correct: 2,
+            explanation: 'The client account area in Back Office lets you verify the package (Basic $99 / Enhanced $399 / Concierge $999) and prepaid Y/N status.'
+          },
+          {
+            id: 's2q6',
+            prompt: 'What happens on the Back Office "Titles page"?',
+            options: ['You view email threads', 'You clock in for the day', 'You open a title file post-execution by entering contract details and uploading required documents', 'You generate Qualia quotes'],
+            correct: 2,
+            explanation: 'The Titles page is where you open a file post-execution: enter buyer agent info, lender, contract details, upload docs, then click Open File.'
           }
         ]
       },
       3: {
         title: 'Knowledge Check · Pricing',
+        displayCount: 4,
         questions: [
           {
             id: 's3q1',
@@ -2271,11 +2352,40 @@
             options: ['$99 prepay is available before contract', '$299 is paid at closing from proceeds with no prepay option', '$499 applies after contract', 'Fee is due at listing checkout'],
             correct: 1,
             explanation: 'Texas has no prepay option. It is always $299 at closing from proceeds.'
+          },
+          {
+            id: 's3q3',
+            prompt: 'A Florida seller wants to lock in the lowest rate. They are not yet under contract. What is their best option?',
+            options: ['Pay $499 now to lock in the post-contract rate', 'Pay $99 to prepay anytime before going under contract', 'Wait until the offer comes in — price is always the same', 'No action needed; Beycome automatically locks rates'],
+            correct: 1,
+            explanation: 'The $99 prepaid rate can be locked in anytime before the contract is executed. Waiting until under contract means $499.'
+          },
+          {
+            id: 's3q4',
+            prompt: 'Which underwriter backs Beycome Title insurance policies in both FL and TX?',
+            options: ['Fidelity National Title', 'First American Title', 'Old Republic National Title', 'Chicago Title'],
+            correct: 2,
+            explanation: 'Insurance is underwritten by Old Republic National Title, a Fortune 500 company with 100+ years in the industry.'
+          },
+          {
+            id: 's3q5',
+            prompt: 'What does the Beycome settlement fee include for both FL and TX sellers?',
+            options: ['Only title search — all other services billed separately', 'Title search, escrow handling, doc prep, coordination, recording, and post-closing policy delivery', 'Just the deed preparation', 'Only escrow and fund holding'],
+            correct: 1,
+            explanation: 'The settlement fee includes title search & clearance, escrow & fund handling, closing doc prep (incl. deed), coordination with buyer lender & title, recording, and post-closing policy delivery.'
+          },
+          {
+            id: 's3q6',
+            prompt: 'What is the honest framing to use when a FL seller asks if they should prepay?',
+            options: ['Pressure them — they must decide immediately or lose $99', 'Tell them the $499 option is just as good and there\'s no rush', 'Explain that $99 early saves the most; $499 at contract is still competitive vs. $700–$1,000+ market rate; their decision', 'Tell them there is no difference between prepaid and non-prepaid'],
+            correct: 2,
+            explanation: 'Honest framing: locking in $99 early saves the most; waiting until under contract is $499. Either way it beats the $700–$1,000+ most FL title companies charge.'
           }
         ]
       },
       4: {
         title: 'Knowledge Check · End-to-End Process',
+        displayCount: 4,
         questions: [
           {
             id: 's4q1',
@@ -2290,11 +2400,184 @@
             options: ['Release earnest money immediately', 'Mark status as Cancelled and upload Release & Cancellation', 'Reopen listing as active and wait', 'Send seller to Qualia directly'],
             correct: 1,
             explanation: 'The process is to mark title status as Cancelled, upload Release and Cancellation, and document the reason in notes.'
+          },
+          {
+            id: 's4q3',
+            prompt: 'When is your highest-value conversion moment with the seller?',
+            options: ['At listing checkout', 'During Phase 6 pre-closing prep', 'Within 48–72 hours of an offer being received', 'After the deed is recorded on closing day'],
+            correct: 2,
+            explanation: 'Sellers make their title company decision within 48–72 hours of an offer. If you are not the first voice in their ear, a buyer\'s agent may lock in someone else.'
+          },
+          {
+            id: 's4q4',
+            prompt: 'What happens automatically the moment you click "Open File" in Back Office?',
+            options: ['A wire transfer is initiated to the seller', 'The title insurance policy is issued immediately', 'A welcome email goes to all parties introducing the assigned processor and explaining next steps', 'A Qualia order is generated and the file is closed'],
+            correct: 2,
+            explanation: 'Clicking Open File triggers an automatic welcome email to seller, buyer\'s agent, and lender introducing the title processor and setting expectations.'
+          },
+          {
+            id: 's4q5',
+            prompt: 'What are the available closing options for sellers using Beycome Title?',
+            options: ['In-person at Miami or Houston office only', 'Online (RON) only', 'In-office signing, mobile notary, or fully online via RON', 'Mail-in signing only'],
+            correct: 2,
+            explanation: 'Sellers can close in-office (Miami or Houston), via mobile notary, or fully online via Remote Online Notarization (RON).'
+          },
+          {
+            id: 's4q6',
+            prompt: 'If earnest money is in dispute after a cancellation, what do you do?',
+            options: ['Release funds to whoever called first', 'Advise the seller to get an attorney', 'Immediately route to Sarah/Amanda (processor) and Sam — never release unilaterally', 'Wait to see if the deal revives'],
+            correct: 2,
+            explanation: 'Earnest money in dispute is an immediate handoff to processor + Sam. You never advise either party or release funds unilaterally.'
+          }
+        ]
+      },
+      5: {
+        title: 'Knowledge Check · Daily Workflow',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's5q1',
+            prompt: 'What is the correct daily priority order for a Title Sales Consultant?',
+            options: ['New listings → follow-ups → offers', 'Follow-ups → new listings → offers', 'Offers → new listings → scheduled follow-ups', 'Monthly tasks → offers → new listings'],
+            correct: 2,
+            explanation: 'The priority order is: 1) Offers → 2) New listings → 3) Scheduled follow-ups → 4) Monthly/open-house. Protect offers and new listings above all else.'
+          },
+          {
+            id: 's5q2',
+            prompt: 'When should you log your notes in Back Office?',
+            options: ['At end of day in a batch', 'Real time as you go — not end of day', 'Once per week on Fridays', 'Only after a deal is closed'],
+            correct: 1,
+            explanation: 'The non-negotiable is: log as you go, in real time — not end of day.'
+          },
+          {
+            id: 's5q3',
+            prompt: 'What is the maximum number of days a non-prepaid seller should go untouched?',
+            options: ['7 days', '5 days', '1 day', '3 days'],
+            correct: 3,
+            explanation: 'Non-negotiable: no non-prepaid seller goes more than 3 days untouched.'
+          },
+          {
+            id: 's5q4',
+            prompt: 'What should you do first when you start your workday?',
+            options: ['Send bulk email templates to all listings', 'Clock in on Hubstaff, then review Back Office for new listings, follow-ups due, and offer notifications', 'Call all sellers alphabetically', 'Generate quotes for every listing in Qualia'],
+            correct: 1,
+            explanation: 'Clock in on Hubstaff, then review Back Office for new listings, follow-ups due, and offer notifications before taking action.'
+          },
+          {
+            id: 's5q5',
+            prompt: 'If you are short on time in your workday, which two activities must you protect above all others?',
+            options: ['Monthly tasks and open-house follow-ups', 'Offers and new listings', 'Follow-ups and file openings', 'Email templates and Qualia quotes'],
+            correct: 1,
+            explanation: 'Short on time → protect offers first and new listings second. These are your highest-conversion moments.'
+          },
+          {
+            id: 's5q6',
+            prompt: 'What does the follow-up block consist of?',
+            options: ['Reviewing Qualia files only', 'Working your Day 3/5/7+ list, rotating the contact channel', 'Sending the same SMS to all sellers every day', 'Clocking in and reviewing yesterday\'s notes'],
+            correct: 1,
+            explanation: 'The follow-up block means working your Day 3/5/7+ list and rotating channels (call → SMS → email) to keep contact fresh.'
+          }
+        ]
+      },
+      6: {
+        title: 'Knowledge Check · Call Scripts',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's6q1',
+            prompt: 'What is the purpose of the universal opener on all calls?',
+            options: ['Immediately quote pricing', 'Introduce yourself as the title point of contact and ask for two minutes', 'Ask for a wire transfer authorization', 'Read the full script word for word'],
+            correct: 1,
+            explanation: 'The universal opener introduces you as the Beycome title contact and asks for two minutes — it is a guide, not a word-for-word read.'
+          },
+          {
+            id: 's6q2',
+            prompt: 'On a FL Prepaid Call 1, what is the primary goal?',
+            options: ['Convert them to the $499 rate', 'Pure welcome and reassurance — nothing to sell', 'Upsell additional closing services', 'Explain the dispute process for earnest money'],
+            correct: 1,
+            explanation: 'FL Prepaid Call 1 is a pure welcome and reassurance call. Nothing to sell — the seller is already set.'
+          },
+          {
+            id: 's6q3',
+            prompt: 'On a TX Call 3, the core message is:',
+            options: ['$99 prepay locks in the lowest rate before contract', 'Seller must close in person at Houston office', '$299 at closing from proceeds — nothing due upfront — seller picks the title company', 'TX sellers must use Beycome by state law'],
+            correct: 2,
+            explanation: 'TX core message: seller picks the title company, $299 paid at closing from proceeds, nothing upfront — low friction yes.'
+          },
+          {
+            id: 's6q4',
+            prompt: 'When should you default to SMS instead of calling?',
+            options: ['Always — SMS is the preferred first contact method', 'When a seller is already under contract and pricing is set', 'As a fallback when the call goes unanswered', 'Only for prepaid FL sellers'],
+            correct: 2,
+            explanation: 'Calls are first contact, always. SMS is the fallback when the call goes unanswered.'
+          },
+          {
+            id: 's6q5',
+            prompt: 'On a FL Non-Prepaid Call 2, what is the soft offer you make?',
+            options: ['Ask them to wire funds immediately', 'Offer to send a quote and the $99 prepay link, no pressure', 'Demand they sign before the next showing', 'Offer a $50 credit if they call back within an hour'],
+            correct: 1,
+            explanation: 'The soft offer on FL Non-Prepaid is: "Can I send a quick quote and the $99 prepay link? No pressure — lock it whenever you\'re ready, or not at all."'
+          },
+          {
+            id: 's6q6',
+            prompt: 'What describes the overall tone and goal of all call scripts?',
+            options: ['High urgency, close before they hang up', 'Inform and build trust — goal is to educate, not pressure', 'Read pricing tables in full on every call', 'Only speak if the seller asks a direct question'],
+            correct: 1,
+            explanation: 'Scripts are guides, not word-for-word reads. Goal is to inform, not pressure. Be the knowledgeable guide on the seller\'s side.'
+          }
+        ]
+      },
+      7: {
+        title: 'Knowledge Check · SMS & Email Templates',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's7q1',
+            prompt: 'What does "Tier 1" mean in the SMS/email template system?',
+            options: ['Full breakdown sent after deep engagement', 'Short first-touch, sent same day as an unanswered call', 'Monthly newsletter template', 'Template for post-closing follow-up'],
+            correct: 1,
+            explanation: 'Tier 1 = short first-touch, same day as an unanswered call. Tier 2 = full breakdown, once they engage.'
+          },
+          {
+            id: 's7q2',
+            prompt: 'What two key facts does the FL Non-Prepaid SMS template lead with?',
+            options: ['That they must sign immediately and prices will increase', 'That seller picks title company in FL + Beycome is $99 now or $499 at closing vs. $700–$1,000+ market rate', 'That closing is in person only and takes 60 days', 'That Old Republic is the only FL underwriter'],
+            correct: 1,
+            explanation: 'The FL SMS leads with: (1) seller picks title & escrow company in FL and (2) pricing advantage — $99 now or $499 at closing vs. $700–$1,000+ most FL companies charge.'
+          },
+          {
+            id: 's7q3',
+            prompt: 'What is the subject line for the FL Non-Prepaid Tier 1 email?',
+            options: ['Beycome Title Introduction — Please Read', 'Your home is live — one thing worth knowing about closing', 'Congratulations on your listing!', 'Important: Title and Closing Fees Explained'],
+            correct: 1,
+            explanation: 'The FL Non-Prepaid Tier 1 email subject is: "Your home is live — one thing worth knowing about closing."'
+          },
+          {
+            id: 's7q4',
+            prompt: 'What two key facts does the TX SMS template lead with?',
+            options: ['TX requires a $99 prepay and in-person closing only', 'Seller picks title company in TX + $299 at closing from proceeds, nothing upfront', 'TX uses the same contract as FL and all fees apply at checkout', 'TX sellers must use a local title company'],
+            correct: 1,
+            explanation: 'The TX SMS leads with: (1) seller picks title & escrow company in TX and (2) $299 at closing from proceeds, nothing due upfront.'
+          },
+          {
+            id: 's7q5',
+            prompt: 'How should all SMS messages sent via Zoho Voice be signed?',
+            options: ['Anonymous — do not identify yourself', 'With your name and "Title Sales @ Beycome"', 'With the Beycome Back Office URL', 'With the processor\'s name and phone number'],
+            correct: 1,
+            explanation: 'All SMS must be signed with your name and title: "— [Your Name], Title Sales @ Beycome."'
+          },
+          {
+            id: 's7q6',
+            prompt: 'A TX seller engages after your Tier 1 email. What is the next step?',
+            options: ['Send another Tier 1 email', 'Send a Tier 2 full breakdown email once they engage', 'Escalate directly to the processor', 'Mark them as closed in Back Office'],
+            correct: 1,
+            explanation: 'Tier 2 is the full breakdown sent once the seller engages. Tier 1 is first touch only.'
           }
         ]
       },
       8: {
         title: 'Knowledge Check · Florida & Texas Playbooks',
+        displayCount: 4,
         questions: [
           {
             id: 's8q1',
@@ -2309,11 +2592,40 @@
             options: ['Seller cannot change the title company once buyer agent prefills it', 'Texas requires prepay before listing', 'Seller can change title company in Paragraph 6A before execution', 'Texas only allows in-person closing'],
             correct: 2,
             explanation: 'In Texas, buyer agents often prefill Paragraph 6A, but sellers can still change title company before execution.'
+          },
+          {
+            id: 's8q3',
+            prompt: 'In Miami-Dade and Broward counties, what is different about the title choice custom?',
+            options: ['Seller always pays and always chooses title — no exceptions', 'Buyer typically pays for and selects the title company — the seller\'s-right-to-choose pitch may not apply', 'Both counties require in-person closings only', 'Prepaid rate is $199 instead of $99 in these counties'],
+            correct: 1,
+            explanation: 'In Miami-Dade and Broward, local custom flips — the buyer typically pays for and selects title. This is reflected in FL contract Paragraph 9(c), checkbox (iii). Verify before pitching seller\'s-right-to-choose.'
+          },
+          {
+            id: 's8q4',
+            prompt: 'What is the 5-step live review flow when a seller says "I got an offer, can you review it with me?"',
+            options: ['Hang up and send email only', 'Ask them to open the contract, jump to FL 9(c) or TX 6A, read the selected line, explain options, coordinate title company correction before signatures', 'Tell them to call their realtor and hang up', 'Forward the contract to the processor without speaking to the seller'],
+            correct: 1,
+            explanation: 'The 5-step live review: 1) Ask seller to open contract PDF. 2) Jump to FL 9(c) or TX 6A. 3) Read selected line aloud. 4) Explain options. 5) If they choose Beycome, coordinate correction before signatures.'
+          },
+          {
+            id: 's8q5',
+            prompt: 'Why does Texas convert more easily than Florida?',
+            options: ['TX sellers are more trusting of all companies', 'TX has a lower price — $99 prepaid beats FL at $299', 'There is no upfront ask in TX — $299 paid from proceeds at closing; structure does the work', 'TX contract is simpler and has no title designation clause'],
+            correct: 2,
+            explanation: 'TX converts easily because there is no upfront ask. Seller agrees now, pays $299 from proceeds at closing. Low friction yes.'
+          },
+          {
+            id: 's8q6',
+            prompt: 'What is your compliance boundary when reviewing a contract with a seller?',
+            options: ['You can give full legal advice on all clauses', 'Explain where title terms are and what each option means operationally — route legal interpretation to an attorney', 'You should never look at any contract with a seller', 'You can advise them on inspection and financing contingencies as well'],
+            correct: 1,
+            explanation: 'You can explain where title terms are located and what each option means operationally. Do not give legal advice on ambiguous clauses — route legal interpretation to an attorney.'
           }
         ]
       },
       9: {
         title: 'Knowledge Check · Objections & Rebuttals',
+        displayCount: 4,
         questions: [
           {
             id: 's9q1',
@@ -2328,11 +2640,232 @@
             options: ['Ask what settlement fee they were quoted', 'Tell them to cancel immediately', 'State Beycome is always better', 'Escalate to legal'],
             correct: 0,
             explanation: 'Start by understanding their current quote and offering a transparent comparison.'
+          },
+          {
+            id: 's9q3',
+            prompt: 'A seller asks "Is title insurance required?" — what is the correct response?',
+            options: ['Tell them it is optional and not worth the cost', 'If buyer is financing, yes — lender requires it. Even in a cash sale, owner\'s title protects from post-closing claims. The real question is who handles it and what you pay.', 'Tell them to ask their buyer\'s agent', 'Say it depends on the state and you\'ll find out later'],
+            correct: 1,
+            explanation: 'If buyer is financing, yes — lender requires it. Even in a cash sale, owner\'s title protects against post-closing claims. It is really a question of who handles it and what you pay.'
+          },
+          {
+            id: 's9q4',
+            prompt: 'A seller says "The buyer\'s agent already picked a title company." Your correct response is:',
+            options: ['Agree and do nothing — the decision is made', 'Explain buyer agents pre-fill their preferred company in FL 9(c)/TX 6A, but seller chooses and switching before signing is simple', 'Tell the seller to reject the offer and renegotiate from scratch', 'Forward the issue to Sam without speaking to the seller'],
+            correct: 1,
+            explanation: 'Buyer agents pre-fill their preferred company, but the seller chooses — especially when paying. Switching before signing is simple and you will handle the mechanics.'
+          },
+          {
+            id: 's9q5',
+            prompt: 'A Florida seller asks "Why prepay? What if I don\'t sell?" Your best response is:',
+            options: ['Tell them they lose the $99 if they don\'t sell — take the risk', 'The $99 locks the rate and activates free offer support from day one. If the deal doesn\'t happen, Beycome works with them.', 'Tell them prepay is mandatory and non-refundable', 'Avoid the question and change the subject'],
+            correct: 1,
+            explanation: 'The $99 locks the rate and activates free offer support from day one. If the deal doesn\'t happen, Beycome works with the seller. Most find offer support alone worth it the moment the first offer lands.'
+          },
+          {
+            id: 's9q6',
+            prompt: 'When should you stop an objection response and check your approach?',
+            options: ['When the seller agrees immediately', 'When you feel yourself "winning an argument" — that\'s the wrong mode', 'When the call goes to voicemail', 'When pricing comes up for the first time'],
+            correct: 1,
+            explanation: 'If you feel yourself winning an argument, stop. You are informing, not debating. The seller deciding for themselves with good information is the goal.'
+          }
+        ]
+      },
+      10: {
+        title: 'Knowledge Check · Generating a Quote',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's10q1',
+            prompt: 'Which system do you use to generate a seller net sheet?',
+            options: ['Zoho Voice', 'Back Office notes tab', 'Qualia Connect', 'Hubstaff'],
+            correct: 2,
+            explanation: 'Qualia Connect is used to generate a seller net sheet. The section provides a step-by-step Scribehow guide for this process.'
+          },
+          {
+            id: 's10q2',
+            prompt: 'Where can you also download a title quote (separate from the seller net sheet)?',
+            options: ['Zoho Mail drafts folder', 'The Beycome Back Office', 'Your personal Qualia profile', 'The ABA Disclosure tab'],
+            correct: 1,
+            explanation: 'The Back Office has its own process for downloading a title quote, documented in the Scribehow guide in Section 10.'
+          },
+          {
+            id: 's10q3',
+            prompt: 'What guide do you follow after a contract is executed and you\'re ready to open the file?',
+            options: ['The Qualia seller net sheet guide', 'The Back Office "Opening a Title Order" step-by-step guide', 'The Zoho Voice call log guide', 'The Hubstaff time-entry guide'],
+            correct: 1,
+            explanation: 'The Back Office "Opening a Title Order" Scribehow guide walks you through the steps after a contract is executed.'
+          },
+          {
+            id: 's10q4',
+            prompt: 'Which guide helps you find a customer\'s offers and locate the ABA Disclosure?',
+            options: ['The Qualia seller net sheet guide', 'The Back Office "How to View Property Offers & Documents" guide', 'The Zoho Mail template guide', 'The Hubstaff activity log guide'],
+            correct: 1,
+            explanation: 'The "How to View Property Offers & Documents" Scribehow guide in Back Office helps you access a customer\'s offers and find documents like the ABA Disclosure.'
+          },
+          {
+            id: 's10q5',
+            prompt: 'When should you generate a quote for a seller?',
+            options: ['Only after the contract is fully executed', 'Before the listing goes live, during checkout', 'When a seller expresses interest — as a tool to show your pricing advantage', 'Only if the seller requests it in writing'],
+            correct: 2,
+            explanation: 'Quotes are generated when sellers express interest to show your pricing advantage clearly. The quote helps them compare Beycome to other title companies.'
+          },
+          {
+            id: 's10q6',
+            prompt: 'What is the purpose of the seller net sheet in Qualia?',
+            options: ['It records all Back Office notes for the file', 'It shows the seller an estimated breakdown of proceeds after all fees and closing costs', 'It is the ABA Disclosure form', 'It tracks the daily call log for Hubstaff'],
+            correct: 1,
+            explanation: 'The seller net sheet in Qualia shows estimated proceeds after all fees and closing costs — a key tool for transparency and closing confidence.'
+          }
+        ]
+      },
+      12: {
+        title: 'Knowledge Check · FAQ',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's12q1',
+            prompt: 'How does Beycome keep its fees so low?',
+            options: ['It charges hidden fees after closing', 'It uses technology for efficiency and eliminates agent referral kickbacks, passing savings to sellers', 'It skips the title search step', 'It only operates in one county in Florida'],
+            correct: 1,
+            explanation: 'Beycome leverages technology for efficiency and has no referral kickbacks to agents — those savings go directly to the seller.'
+          },
+          {
+            id: 's12q2',
+            prompt: 'What is the difference between the title insurance premium and the settlement fee?',
+            options: ['They are the same thing — one line on the closing statement', 'Premium is state-set and identical across companies; the settlement fee is what varies and where Beycome saves you money', 'Settlement fee is state-set; premium is negotiable', 'Neither is listed on the closing statement'],
+            correct: 1,
+            explanation: 'Title insurance premiums are state-set and identical across providers. The settlement fee is where companies differ — and where Beycome\'s flat fee saves the seller money.'
+          },
+          {
+            id: 's12q3',
+            prompt: 'A seller asks: "Is Beycome Title legit? I\'ve never heard of it." What is the correct answer?',
+            options: ['Beycome is new and still building a track record', 'Every policy is underwritten by Old Republic National Title — Fortune 500, 100+ years, licensed in FL (#G142689) and TX (#3461702)', 'Beycome Title is a subsidiary of a local Miami law firm', 'Beycome is only licensed in Florida, not Texas'],
+            correct: 1,
+            explanation: 'Every policy is underwritten by Old Republic National Title — Fortune 500, 100+ years, among the fewest complaints in the industry. Licensed in FL (#G142689) and TX (#3461702).'
+          },
+          {
+            id: 's12q4',
+            prompt: 'A seller asks: "How do I get my money after closing?" What do you tell them?',
+            options: ['Send a certified check to Beycome\'s Miami office and wait 5–7 business days', 'Proceeds are wired to their bank account, typically the same day the deed is recorded — usually within hours of signing', 'Funds are mailed by check 30 days after closing', 'Sellers must pick up proceeds in person at the office'],
+            correct: 1,
+            explanation: 'Sellers receive net proceeds via wire transfer, typically the same day the deed is recorded — usually within hours of signing. Certified check requests are also available.'
+          },
+          {
+            id: 's12q5',
+            prompt: 'Why is there a difference between the FL $99 prepaid rate and the $499 at-closing rate?',
+            options: ['It is a penalty for being indecisive', '$99 rewards early decision-making when options exist; $499 reflects the deal already in motion with fewer shopping options — still competitive vs. market', 'The services included are completely different', 'It depends on county — Miami-Dade charges $499 and Tampa charges $99'],
+            correct: 1,
+            explanation: 'Prepaid locks in a committed rate early when you have options. At-closing pricing reflects that the deal is in motion and you have fewer options to shop. Still competitive, but prepaid rewards early decision-making.'
+          },
+          {
+            id: 's12q6',
+            prompt: 'A seller has an offer and wants to work with Beycome. What is their next step?',
+            options: ['Wire the settlement fee before signing', 'Add Beycome Title\'s details to the contract\'s Escrow Agent Name section (FL: South Miami address; TX: Houston address)', 'Wait for Beycome to contact the buyer\'s agent automatically', 'Re-list their property to trigger Beycome\'s system'],
+            correct: 1,
+            explanation: 'Simply add Beycome Title\'s address and phone to the contract\'s Escrow Agent Name section. FL: South Miami office. TX: Houston office.'
+          }
+        ]
+      },
+      13: {
+        title: 'Knowledge Check · Day-1 Operating Playbook',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's13q1',
+            prompt: 'If a seller\'s call goes to voicemail, what is the correct next-action sequence?',
+            options: ['Mark them as unresponsive and move on', 'Leave voicemail if possible, send matching SMS, then same-day email, add Back Office note, schedule retry Day 3', 'Call back immediately 5 more times before leaving any message', 'Send email only and wait 7 days'],
+            correct: 1,
+            explanation: 'No answer: Leave VM if possible, send matching SMS, then same-day email, add Back Office note, schedule retry Day 3.'
+          },
+          {
+            id: 's13q2',
+            prompt: 'What are the four qualification questions on a live call?',
+            options: ['What is your asking price? How many offers? When is closing? What state?', '1) Have you received any offers yet? 2) Are you already under contract? 3) Did you already select a title company? 4) Are you in FL or TX?', 'Do you want prepaid? Can I send a quote? When is your open house? What bank?', '1) Name? 2) Email? 3) Phone? 4) Back Office ID?'],
+            correct: 1,
+            explanation: 'The 4 qualification questions on a live call: 1) Any offers yet? 2) Already under contract? 3) Already selected a title company? 4) FL or TX?'
+          },
+          {
+            id: 's13q3',
+            prompt: 'Which issue type must be escalated to Sam within 1 hour?',
+            options: ['A seller who says they\'ll call back later', 'Upset customer or complaint risk', 'A seller asking for a quote', 'A new listing appearing in the Back Office'],
+            correct: 1,
+            explanation: 'Upset customer / complaint risk escalates to Sam first (processor copied) with a 1-hour SLA.'
+          },
+          {
+            id: 's13q4',
+            prompt: 'What must you complete before your Pre-Open-File Quality Check passes?',
+            options: ['Only the ABA Disclosure upload', 'Fully executed contract uploaded, ABA Disclosure uploaded, buyer agent details, lender details, correct closing date/price/earnest money, and Back Office note', 'Just the lender contact info and closing date', 'Send a quote to the seller and wait for written approval'],
+            correct: 1,
+            explanation: 'Pre-Open-File quality check requires: executed contract uploaded, ABA Disclosure uploaded, buyer agent details, lender details (or Cash), closing date/price/earnest money correct, and Back Office note with summary.'
+          },
+          {
+            id: 's13q5',
+            prompt: 'What is the three hard rules of the Day-1 Playbook?',
+            options: ['Quote fast, close faster, always email first', '1) Call before text. 2) Never guess pricing. 3) If it is not in Back Office notes, it did not happen.', '1) Follow up weekly. 2) Quote $499 by default. 3) Let buyer\'s agent choose title.', '1) Use Hubstaff for notes. 2) Always email before calling. 3) Escalate to Qualia for all questions.'],
+            correct: 1,
+            explanation: 'Three hard rules: 1) Call before text. 2) Never guess pricing. 3) If it is not in Back Office notes, it did not happen.'
+          },
+          {
+            id: 's13q6',
+            prompt: 'What is the six-item First-Day Execution Checklist?',
+            options: ['Memorize all FAQ answers, generate 10 quotes, call 50 sellers, write scripts from memory, submit to Sam, clock out', 'Log into all 5 systems, find one live listing, generate one quote in Qualia and one in Back Office, practice FL and TX scripts, run one practice file flow, send one test email and SMS template', 'Create a Back Office note for every listing, update Hubstaff, generate net sheets for all sellers, read all FAQs, submit quiz, call Sam', 'Set up Zoho Voice, send Tier 1 templates to all sellers, close first deal, attend certification, review FL contract, log off'],
+            correct: 1,
+            explanation: 'Day 1 checklist: 1) Log into Back Office, Zoho Voice, Zoho Mail, Hubstaff, Qualia. 2) Find one live listing and locate offers + docs + ABA Disclosure. 3) Generate one quote in Qualia and one in Back Office. 4) Practice FL and TX scripts. 5) Run one practice file flow. 6) Send one test email and SMS template.'
+          }
+        ]
+      },
+      14: {
+        title: 'Knowledge Check · 30/60/90 Ramp Plan',
+        displayCount: 4,
+        questions: [
+          {
+            id: 's14q1',
+            prompt: 'What is the outcome target for Days 1–30?',
+            options: ['90+ deals under contract', '55–70 deals under contract', '~25–35 deals under contract by day 30', '10 deals and full certification'],
+            correct: 2,
+            explanation: 'Days 1–30 outcome target: ~25–35 deals under contract by day 30. Focus is on learning and building habits, not volume.'
+          },
+          {
+            id: 's14q2',
+            prompt: 'What is the full-time monthly deal target by end of Month 3?',
+            options: ['25–35 per month', '55–70 per month', '90+ deals under contract per month', '10 closed deals'],
+            correct: 2,
+            explanation: 'By end of Month 3, the target is 90+ deals under contract per month, sustained as the new normal.'
+          },
+          {
+            id: 's14q3',
+            prompt: 'What is the key focus during Days 31–60?',
+            options: ['Continue supervised calls and avoid independent action', 'Fully independent on all call types, tight follow-up cadence, confident contract walkthroughs, objections handled cold', 'Focus on generating Qualia quotes only', 'Wait for Sam to assign deals directly'],
+            correct: 1,
+            explanation: 'Days 31–60: Fully independent on all call types including the offer-received conversion call. Tight cadence (no non-prepaid seller >3 days untouched). Confident FL 9(c)/TX 6A walkthroughs. Objections handled cold.'
+          },
+          {
+            id: 's14q4',
+            prompt: 'What is the one habit described as making the deal number achievable?',
+            options: ['Generating the most quotes per day', 'Call-first + immediate offer response + no seller going cold', 'Attending weekly training sessions with Sam', 'Focusing only on prepaid FL sellers'],
+            correct: 1,
+            explanation: 'The one habit: call-first + immediate offer response + no seller going cold. The 90+ is hit by never letting a winnable deal slip through stale follow-up.'
+          },
+          {
+            id: 's14q5',
+            prompt: 'What is expected in the Days 61–90 phase beyond hitting 90+ deals?',
+            options: ['Transition to management and stop taking calls', 'Self-directed prioritization without prompting, coaching-ready notes and outcomes, spotting process improvements and raising them to Sam', 'Focus only on TX sellers to grow that market', 'Reduce call volume and rely on email templates'],
+            correct: 1,
+            explanation: 'Days 61–90: consistent 90+/month run rate, self-directed prioritization, coaching-ready clean notes and outcomes, and raising process improvements to Sam.'
+          },
+          {
+            id: 's14q6',
+            prompt: 'What is the primary focus during the first week of Days 1–30?',
+            options: ['Close 10 deals as quickly as possible', 'Finish all self-study resources, memorize pricing and the decision tree cold, shadow/role-play all scripts with Sam', 'Generate net sheets for every active listing', 'Shadow the FL and TX processors on title searches'],
+            correct: 1,
+            explanation: 'First week focus: finish all resources self-study, memorize pricing and the decision tree cold, shadow/role-play call scripts with Sam, and master Back Office.'
           }
         ]
       },
       16: {
         title: 'Final Review · Certification Check',
+        displayCount: 6,
         questions: [
           {
             id: 's16q1',
@@ -2361,6 +2894,34 @@
             options: ['Hard close quickly before offer', 'Consultative guide: clear, accurate, no hard sell', 'Only send templates and avoid calls', 'Avoid discussing title until contract is signed'],
             correct: 1,
             explanation: 'The onboarding emphasizes consultative communication, phone-first outreach, and no hard sell.'
+          },
+          {
+            id: 's16q5',
+            prompt: 'A Florida seller is in Miami-Dade county and says "I get to pick the title company." What should you clarify?',
+            options: ['Confirm they are correct — FL sellers always choose', 'Explain Miami-Dade/Broward custom often flips to buyer-pays; check Paragraph 9(c) checkbox (iii) before using seller-choice language', 'Tell them the buyer agent automatically assigns the company', 'Agree and immediately send the $99 prepay link'],
+            correct: 1,
+            explanation: 'In Miami-Dade and Broward, local custom flips — buyer typically pays and selects title. Verify Paragraph 9(c), checkbox (iii) before pitching seller\'s-right-to-choose.'
+          },
+          {
+            id: 's16q6',
+            prompt: 'What are the two mandatory uploads before you can click "Open File" in Back Office?',
+            options: ['Signed deed + ABA Disclosure', 'Executed purchase agreement + ABA Disclosure', 'Title quote + lender pre-approval letter', 'Inspection report + Qualia order confirmation'],
+            correct: 1,
+            explanation: 'Mandatory before Open File: (1) Executed Purchase Agreement / Contract and (2) ABA Disclosure from the listing Documents tab. No exceptions.'
+          },
+          {
+            id: 's16q7',
+            prompt: 'A TX seller asks about the $299. When is it paid and how?',
+            options: ['$299 is due upfront before listing goes live', '$299 is billed monthly during the listing period', '$299 is paid at closing from the seller\'s proceeds — nothing collected upfront; no prepay option exists in TX', '$299 must be wired within 24 hours of contract execution'],
+            correct: 2,
+            explanation: 'TX is always $299 at closing from proceeds. Nothing collected upfront. No prepay option exists in TX.'
+          },
+          {
+            id: 's16q8',
+            prompt: 'What is the ramp target for a full-time Title Sales Consultant by end of Month 3?',
+            options: ['25–35 deals per month', '55–70 deals per month', '90+ deals under contract per month, sustained', '15 closed transactions'],
+            correct: 2,
+            explanation: 'By end of Month 3 the target is 90+ deals under contract per month — the new normal, not a peak.'
           }
         ]
       }
@@ -2368,16 +2929,12 @@
 
     const badgeConfig = [
       { id: 'first-steps', title: 'First Steps', rule: state => state.visitedSections.length >= 3 },
-      { id: 'systems-ready', title: 'Systems Ready', rule: state => (state.quizAttempts['2']?.correctCount || 0) >= 2 },
-      { id: 'pricing-pro', title: 'Pricing Pro', rule: state => {
-        const attempt = state.quizAttempts['3'];
-        return attempt && attempt.correctCount === attempt.total;
-      }},
+      { id: 'systems-ready', title: 'Systems Ready', rule: state => state.quizAttempts['2']?.passed === true },
+      { id: 'pricing-pro', title: 'Pricing Pro', rule: state => state.quizAttempts['3']?.passed === true },
       { id: 'scenario-operator', title: 'Operator Mindset', rule: state => state.scenarioCompletedParts.length === 3 },
-      { id: 'certified', title: 'Certified Consultant', rule: state => !!state.quizAttempts['16'] },
+      { id: 'certified', title: 'Certified Consultant', rule: state => state.quizAttempts['16']?.passed === true },
       { id: 'perfect-run', title: 'Perfect Run', rule: state => QUIZ_SECTIONS.every(sectionId => {
-        const attempt = state.quizAttempts[String(sectionId)];
-        return attempt && attempt.correctCount === attempt.total;
+        return state.quizAttempts[String(sectionId)]?.passed === true;
       })}
     ];
 
@@ -2397,7 +2954,9 @@
           part3: { rationale: '', priorities: {}, submitted: false, points: 0 }
         },
         scenarioCompletedParts: [],
-        badges: []
+        badges: [],
+        traineeName: '',
+        completionCount: 0
       };
     }
 
@@ -2437,13 +2996,18 @@
     }
 
     function completedAssessments() {
-      const quizDone = Object.keys(appState.quizAttempts).length;
+      const quizDone = Object.values(appState.quizAttempts).filter(a => a.passed === true).length;
       return quizDone + appState.scenarioCompletedParts.length;
     }
 
     function scoreSummary() {
-      const quizScore = Object.values(appState.quizAttempts).reduce((sum, attempt) => sum + (attempt.correctCount || 0), 0);
-      const quizMax = Object.values(quizConfig).reduce((sum, quiz) => sum + quiz.questions.length, 0);
+      const attempts = Object.values(appState.quizAttempts);
+      const quizScore = attempts.reduce((sum, attempt) => sum + (attempt.correctCount || 0), 0);
+      // Use displayCount for max (questions actually shown), fallback to total pool size
+      const quizMax = Object.entries(quizConfig).reduce((sum, [id, quiz]) => {
+        const attempt = appState.quizAttempts[id];
+        return sum + (attempt?.total || quiz.displayCount || quiz.questions.length);
+      }, 0);
       const scenarioScore = SCENARIO_PARTS.reduce((sum, key) => sum + (appState.scenarioResponses[key]?.points || 0), 0);
       const scenarioMax = 6;
       return {
@@ -2463,9 +3027,15 @@
       if (!appState.visitedSections.includes(sectionId)) {
         appState.visitedSections.push(sectionId);
       }
-      if (!ASSESSMENT_SECTIONS.has(sectionId) && !appState.completedSections.includes(sectionId)) {
+      // Only auto-complete sections that are NOT quiz sections (quiz sections require passing)
+      if (!QUIZ_SECTIONS.includes(sectionId) && !ASSESSMENT_SECTIONS.has(sectionId) && !appState.completedSections.includes(sectionId)) {
         appState.completedSections.push(sectionId);
       }
+    }
+
+    function isQuizPassed(sectionId) {
+      const a = appState.quizAttempts[String(sectionId)];
+      return a && a.passed === true;
     }
 
     function setSectionCompletion(sectionId, completed) {
@@ -2540,11 +3110,48 @@
         const marker = done ? ' ✓' : visited ? ' •' : '';
         return `<button class="jump-link${page === currentPage ? ' active' : ''}" onclick="displayPage(${page})">${page}. ${section.title}${marker}</button>`;
       }).join('');
+      // Re-apply any active search filter
+      const searchInput = document.getElementById('section-search');
+      if (searchInput && searchInput.value) {
+        filterJumpNav(searchInput.value);
+      }
+    }
+
+    function filterJumpNav(query) {
+      const q = query.toLowerCase().trim();
+      document.querySelectorAll('.jump-link, .jump-nav-item').forEach(btn => {
+        btn.style.display = (!q || btn.textContent.toLowerCase().includes(q)) ? '' : 'none';
+      });
+    }
+
+    function onNameInput(val) {
+      const name = val.trim();
+      const btn = document.getElementById('start-btn');
+      const err = document.getElementById('name-error');
+      if (name.length >= 2) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+        if (err) err.style.display = 'none';
+      } else {
+        btn.style.opacity = '0.4';
+        btn.style.pointerEvents = 'none';
+      }
     }
 
     function startTraining(resume = false) {
+      const nameInput = document.getElementById('trainee-name');
+      const name = nameInput ? nameInput.value.trim() : appState.traineeName;
+      if (!name || name.length < 2) {
+        const err = document.getElementById('name-error');
+        if (err) err.style.display = 'block';
+        return;
+      }
+      appState.traineeName = name;
       document.getElementById('welcome-view').classList.remove('active');
       document.getElementById('content-view').classList.add('active');
+      // Show Quick Ref button when training starts
+      const qrBtn = document.getElementById('quick-ref-btn');
+      if (qrBtn) qrBtn.style.display = 'block';
       appState.started = true;
       const page = resume ? (appState.currentPage || 1) : 1;
       saveState();
@@ -2552,6 +3159,11 @@
     }
 
     function resumeTraining() {
+      const nameInput = document.getElementById('trainee-name');
+      const name = nameInput ? nameInput.value.trim() : appState.traineeName;
+      if (name && name.length >= 2) {
+        appState.traineeName = name;
+      }
       startTraining(true);
     }
 
@@ -2568,7 +3180,22 @@
       document.getElementById('total-pages').textContent = sections.length;
 
       document.getElementById('prev-btn').disabled = pageNum === 1;
-      document.getElementById('next-btn').disabled = pageNum === sections.length;
+
+      // Disable Next if this section has a quiz that hasn't been passed yet
+      const nextBtn = document.getElementById('next-btn');
+      const isLastPage = pageNum === sections.length;
+      const sectionHasQuiz = QUIZ_SECTIONS.includes(section.id);
+      const quizAlreadyPassed = isQuizPassed(section.id);
+      if (isLastPage) {
+        nextBtn.disabled = true;
+        nextBtn.removeAttribute('title');
+      } else if (sectionHasQuiz && !quizAlreadyPassed) {
+        nextBtn.disabled = true;
+        nextBtn.title = 'Pass this section\'s quiz to continue.';
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.removeAttribute('title');
+      }
 
       renderAssessmentsForSection(section.id);
       updateDashboard();
@@ -2599,18 +3226,41 @@
       }
     }
 
+    function getSelectedQuestions(sectionId) {
+      const quiz = quizConfig[sectionId];
+      const displayCount = quiz.displayCount || quiz.questions.length;
+      const prior = appState.quizAttempts[String(sectionId)];
+      // If prior attempt has selectedIds, reuse same questions for consistency
+      if (prior && prior.selectedIds && prior.selectedIds.length > 0) {
+        return quiz.questions.filter(q => prior.selectedIds.includes(q.id));
+      }
+      // Shuffle and pick displayCount questions
+      const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, Math.min(displayCount, shuffled.length));
+    }
+
     function renderQuiz(sectionId, target) {
       const quiz = quizConfig[sectionId];
       const prior = appState.quizAttempts[String(sectionId)];
+      const selectedQuestions = getSelectedQuestions(sectionId);
+      // Store the selected question IDs in an in-progress attempt so retakes within session are consistent
+      if (!prior || !prior.selectedIds) {
+        if (!appState._pendingQuizIds) appState._pendingQuizIds = {};
+        appState._pendingQuizIds[String(sectionId)] = selectedQuestions.map(q => q.id);
+      }
+
+      const passedClass = prior?.passed ? ' style="border-color:#b8eccf;"' : '';
+      const headerBg = prior?.passed ? 'background:#ecfff3;' : '';
       const wrapper = document.createElement('section');
       wrapper.className = 'assessment-card';
+      wrapper.setAttribute('style', prior?.passed ? 'border:1px solid #b8eccf;border-radius:12px;background:#f8faff;overflow:hidden;' : '');
       wrapper.innerHTML = `
-        <div class="assessment-header">
-          <h3>${quiz.title}${prior ? '<span class="completed-pill">Completed</span>' : ''}</h3>
-          <p>Answer all questions to complete this checkpoint.</p>
+        <div class="assessment-header" style="${headerBg}">
+          <h3>${quiz.title}${prior ? (prior.passed ? '<span class="completed-pill">Passed ✓</span>' : '<span class="completed-pill" style="background:#fff4f1;border-color:#ffd6cc;color:#c53030;">Not Passed</span>') : ''}</h3>
+          <p>Answer all ${selectedQuestions.length} questions${prior?.passed ? '' : ' to complete this checkpoint (80% to pass)'}.</p>
         </div>
         <div class="assessment-body" id="quiz-body-${sectionId}">
-          ${quiz.questions.map((q, qIndex) => {
+          ${selectedQuestions.map((q, qIndex) => {
             const saved = prior?.answers?.[q.id];
             const feedback = prior?.feedback?.[q.id];
             return `
@@ -2629,11 +3279,25 @@
           <div class="assessment-actions">
             <button class="mini-button" onclick="submitQuiz(${sectionId})">Submit Answers</button>
             <button class="mini-button ghost" onclick="resetQuiz(${sectionId})">Retake Quiz</button>
-            <span class="status-text" id="quiz-status-${sectionId}">${prior ? `Score: ${prior.correctCount}/${prior.total}` : 'Not submitted yet'}</span>
+            <span class="status-text" id="quiz-status-${sectionId}">${prior
+              ? (prior.passed
+                  ? `Score: ${prior.correctCount}/${prior.total} — Passed!`
+                  : `Score: ${prior.correctCount}/${prior.total} — Need 80% to pass. Retake to try again.`)
+              : 'Not submitted yet'}</span>
           </div>
+          ${prior && !prior.passed ? '<p style="margin-top:10px;color:#c53030;font-size:13px;font-weight:600;">You need 80% or higher to unlock the Next section. Retake the quiz to try again.</p>' : ''}
         </div>
       `;
       target.appendChild(wrapper);
+    }
+
+    const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+    function logToSheets(payload) {
+      if (!SHEETS_URL || SHEETS_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+      try {
+        fetch(SHEETS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      } catch(e) {}
     }
 
     function submitQuiz(sectionId) {
@@ -2642,7 +3306,13 @@
       const feedback = {};
       let correctCount = 0;
 
-      for (const question of quiz.questions) {
+      // Determine which questions are currently displayed
+      const prior = appState.quizAttempts[String(sectionId)];
+      const pendingIds = appState._pendingQuizIds?.[String(sectionId)];
+      let selectedIds = prior?.selectedIds || pendingIds || quiz.questions.map(q => q.id);
+      const selectedQuestions = quiz.questions.filter(q => selectedIds.includes(q.id));
+
+      for (const question of selectedQuestions) {
         const selected = document.querySelector(`input[name="quiz-${sectionId}-${question.id}"]:checked`);
         if (!selected) {
           document.getElementById(`quiz-status-${sectionId}`).textContent = 'Please answer all questions before submitting.';
@@ -2655,27 +3325,61 @@
         if (isCorrect) correctCount += 1;
       }
 
+      const total = selectedQuestions.length;
+      const passed = correctCount / total >= PASSING_SCORE;
+      const prevAttempt = appState.quizAttempts[String(sectionId)];
+      const attemptNum = (prevAttempt?.attemptNum || 0) + 1;
+
       appState.quizAttempts[String(sectionId)] = {
         answers,
         feedback,
         correctCount,
-        total: quiz.questions.length
+        total,
+        passed,
+        selectedIds,
+        attemptNum
       };
-      setSectionCompletion(sectionId, true);
+
+      // Only mark section complete if passed
+      setSectionCompletion(sectionId, passed);
+
+      // If section 16 is passed, increment completionCount
+      if (sectionId === 16 && passed) {
+        appState.completionCount = (appState.completionCount || 0) + 1;
+      }
+
+      // Log to Google Sheets
+      const sectionObj = sections.find(s => s.id === sectionId);
+      logToSheets({
+        timestamp: new Date().toISOString(),
+        name: appState.traineeName || 'Unknown',
+        event: sectionId === 16 ? 'final_certification' : 'quiz_attempt',
+        sectionNum: sectionId,
+        sectionTitle: sectionObj ? sectionObj.title : `Section ${sectionId}`,
+        score: `${correctCount}/${total}`,
+        passed: passed ? 'Yes' : 'No',
+        attemptNum,
+        trainingRun: appState.completionCount || 0
+      });
+
       evaluateBadges();
       saveState();
       renderAssessmentsForSection(sectionId);
       updateDashboard();
       renderJumpNav();
+      // Re-render displayPage to update next button state
+      displayPage(currentPage);
     }
 
     function resetQuiz(sectionId) {
       delete appState.quizAttempts[String(sectionId)];
+      if (appState._pendingQuizIds) delete appState._pendingQuizIds[String(sectionId)];
       setSectionCompletion(sectionId, false);
       saveState();
       renderAssessmentsForSection(sectionId);
       updateDashboard();
       renderJumpNav();
+      displayPage(currentPage);
     }
 
     function renderScenarioLab(target) {
@@ -2966,8 +3670,32 @@
       const score = scoreSummary();
       const progress = progressSummary();
       const assessmentsDone = completedAssessments();
-      const ready = appState.completedSections.length >= sections.length && assessmentsDone >= totalAssessmentCount();
+      const certPassed = isQuizPassed(16);
+      const ready = certPassed && appState.completedSections.length >= sections.length && assessmentsDone >= totalAssessmentCount();
       const percentScore = Math.round((score.score / Math.max(1, score.max)) * 100);
+      const traineeName = appState.traineeName || 'Trainee';
+      const todayStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const badgeChips = appState.badges.map(id => {
+        const badge = badgeConfig.find(item => item.id === id);
+        return `<span class="badge" style="display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600;color:#1e40af;margin:4px;">🏅 ${badge?.title || id}</span>`;
+      }).join('');
+
+      const certHtml = certPassed ? `
+        <div id="print-cert-wrapper" style="margin-top:28px;border:2px solid #2563eb;border-radius:16px;padding:40px 48px;text-align:center;background:linear-gradient(135deg,#eff6ff 0%,#fff 60%,#f0fdf4 100%);">
+          <div style="font-size:36px;margin-bottom:8px;">🏆</div>
+          <h2 style="font-size:24px;font-weight:900;color:#1e3a5f;margin-bottom:6px;">Certificate of Completion</h2>
+          <p style="color:#6C7480;font-size:14px;margin-bottom:20px;">Title Sales Consultant Training — Beycome</p>
+          <p style="font-size:22px;font-weight:800;color:#1e3a5f;margin-bottom:6px;">${escapeHtml(traineeName)}</p>
+          <p style="font-size:14px;color:#6C7480;margin-bottom:20px;">has successfully completed all training requirements</p>
+          <p style="font-size:13px;color:#6C7480;margin-bottom:16px;">Score: ${score.score} / ${score.max} (${percentScore}%) · Issued: ${todayStr}</p>
+          <div style="margin-bottom:16px;">${badgeChips}</div>
+          <p style="font-size:12px;color:#9CA3AF;">Beycome Corp. — Internal Use Only · Title Sales Department</p>
+        </div>
+        <div style="text-align:center;margin-top:14px;">
+          <button class="mini-button" onclick="printCertificate()" style="background:#2563eb;">🖨 Print Certificate</button>
+        </div>
+      ` : `<p style="color:#c53030;font-size:14px;margin-top:16px;font-weight:600;">Complete and pass the Final Certification quiz (Section 16) to unlock your certificate.</p>`;
+
       const wrapper = document.createElement('section');
       wrapper.className = 'assessment-card';
       wrapper.innerHTML = `
@@ -2982,13 +3710,54 @@
             <div class="stat-card"><label>Assessments</label><strong>${assessmentsDone} / ${totalAssessmentCount()}</strong></div>
             <div class="stat-card"><label>Badges</label><strong>${appState.badges.length}</strong></div>
           </div>
-          <div class="assessment-actions">
-            <button class="mini-button ghost" onclick="window.print()">Print Certification Summary</button>
-            <span class="status-text">${ready ? 'Status: Certification-ready.' : 'Status: In progress.'}</span>
-          </div>
+          ${certHtml}
         </div>
       `;
       target.appendChild(wrapper);
+    }
+
+    function printCertificate() {
+      const wrapper = document.getElementById('print-cert-wrapper');
+      if (!wrapper) return;
+      const content = wrapper.innerHTML;
+      const win = window.open('', '_blank');
+      win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Title Sales Certification — Beycome</title>
+      <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f8fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; }
+        .cert-card { border: 2px solid #2563eb; border-radius: 16px; padding: 48px 56px; text-align: center; background: linear-gradient(135deg,#eff6ff 0%,#fff 60%,#f0fdf4 100%); max-width: 640px; width: 100%; }
+        h2 { font-size: 26px; font-weight: 900; color: #1e3a5f; margin-bottom: 6px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: #1e40af; margin: 4px; }
+        @media print { body { background: white; padding: 20px; } }
+      </style></head><body><div class="cert-card">${content}</div></body></html>`);
+      win.document.close();
+      setTimeout(() => { win.focus(); win.print(); }, 400);
+    }
+
+    function toggleQuickRef() {
+      const modal = document.getElementById('quick-ref-modal');
+      if (!modal) return;
+      modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function printQuickRef() {
+      const content = document.getElementById('quick-ref-content');
+      if (!content) return;
+      const html = content.innerHTML;
+      const win = window.open('', '_blank');
+      win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Title Sales Quick Reference — Beycome</title>
+      <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: white; padding: 32px; color: #3A4048; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+        th { background: #3F4854; color: #fff; text-align: left; padding: 10px; font-size: 13px; }
+        td { padding: 9px 10px; border-bottom: 1px solid #e0e0e0; }
+        h2 { font-size: 22px; font-weight: 900; color: #1e3a5f; margin-bottom: 20px; }
+        button { display: none; }
+        @media print { body { padding: 16px; } }
+      </style></head><body>${html}</body></html>`);
+      win.document.close();
+      setTimeout(() => { win.focus(); win.print(); }, 400);
     }
 
     function resetProgress() {
@@ -2997,6 +3766,8 @@
       appState = getDefaultState();
       currentPage = 1;
       localStorage.removeItem(STORAGE_KEY);
+      const qrBtn = document.getElementById('quick-ref-btn');
+      if (qrBtn) qrBtn.style.display = 'none';
       updateDashboard();
       renderJumpNav();
       showToast('Progress reset.');
@@ -3016,6 +3787,21 @@
 
     updateDashboard();
     renderJumpNav();
+
+    // Pre-fill name input if returning user
+    if (appState.traineeName) {
+      const nameInput = document.getElementById('trainee-name');
+      if (nameInput) {
+        nameInput.value = appState.traineeName;
+        onNameInput(appState.traineeName);
+      }
+    }
+
+    // Show Quick Ref button if already started
+    if (appState.started) {
+      const qrBtn = document.getElementById('quick-ref-btn');
+      if (qrBtn) qrBtn.style.display = 'block';
+    }
   </script>
 </body>
 </html>
